@@ -1,0 +1,627 @@
+:root {
+  --ink: #111;
+  --paper: #f5f5f5;
+  --olive: #bbb78b;
+  --muted: #88865c;
+  --panel: #ebebeb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #ddd;
+  color: var(--ink);
+  font-family: Montserrat, Arial, sans-serif;
+}
+
+.page {
+  width: min(100%, 1000px);
+  margin: 0 auto;
+  background: var(--paper);
+  overflow: hidden;
+}
+
+/* --- BANNER Y NAVEGACIÓN --- */
+.topbar {
+  min-height: 70px;
+  padding: 14px 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #000;
+  color: #fff;
+}
+
+.brand {
+  flex: 1 1 150px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  line-height: .9;
+}
+
+.brand strong,
+.footer-brand strong {
+  display: block;
+  font: 600 40px/1 Oswald, sans-serif;
+}
+
+.brand span,
+.footer-brand span {
+  display: block;
+  color: var(--muted);
+  font: 600 24px/1 Oswald, sans-serif;
+}
+
+.nav {
+  display: flex;
+  flex: 3 1 auto;
+  align-items: center;
+  justify-content: space-around;
+  gap: 18px;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+  font: 600 clamp(14px, 2.2vw, 27px)/1.05 Roboto, sans-serif;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.actions button {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.actions img,
+.actions svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.actions svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* --- HERO --- */
+.hero {
+  height: 226px;
+  position: relative;
+  overflow: hidden;
+  background: #222;
+}
+
+.image-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-title {
+  position: absolute;
+  top: 17px;
+  left: 9%;
+  font: normal 90px/1 Bebas Neue, sans-serif;
+  color: #fff;
+}
+
+.hero-title span {
+  display: block;
+}
+
+.hero-title span + span {
+  color: var(--olive);
+}
+
+/* --- SERVICIOS --- */
+.services {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  align-items: stretch;
+}
+
+.service {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--paper);
+}
+
+.service svg {
+  flex: 0 0 76px;
+  width: 76px;
+  height: 55px;
+  fill: none;
+  stroke: #111;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.service div {
+  min-width: 0;
+}
+
+.service b,
+.service small {
+  display: block;
+}
+
+.service b {
+  font: 700 clamp(12px, 1.8vw, 20px)/1.08 Montserrat, sans-serif;
+}
+
+.service small {
+  font: 500 clamp(10px, 1.35vw, 15px)/1.1 Montserrat, sans-serif;
+}
+
+/* --- CATÁLOGO Y TARJETAS --- */
+.catalog-section {
+  padding: 0 21px;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+  padding: 10px 0;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font: 700 clamp(20px, 3vw, 30px)/1 Oswald, sans-serif;
+}
+
+.section-heading a {
+  color: var(--olive);
+  font: 900 clamp(16px, 2.5vw, 25px)/1 Montserrat, sans-serif;
+  text-decoration: none;
+}
+
+.product-row {
+  display: flex;
+  gap: 11px;
+  padding-bottom: 20px;
+}
+
+.product-card {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 305px;
+  position: relative;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid var(--paper);
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1a1a1a;
+  background: var(--panel);
+  transition: background 0.4s ease;
+}
+
+.product-card svg,
+.product-card img,
+.product-card image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  transform-origin: center;
+}
+
+.product-card b {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 47px;
+  padding: 10px;
+  background: var(--panel);
+  font: 700 clamp(16px, 2.5vw, 30px)/1 Barlow, sans-serif;
+}
+
+.product-card:hover svg,
+.product-card:hover img,
+.product-card:hover image {
+  transform: scale(1.06);
+  filter: brightness(1.15);
+}
+
+.product-card:hover {
+  background: #f4f4f4;
+  cursor: pointer;
+}
+
+.launches .section-heading {
+  min-height: 48px;
+  padding: 2px 0;
+}
+
+.launches .product-row {
+  padding-top: 0;
+}
+
+/* --- FOOTER Y NEWSLETTER --- */
+.footer {
+  background: #000;
+  color: #fff;
+  padding: 0 0 18px 0;
+}
+
+.newsletter {
+  width: 100%;
+  min-height: 116px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 19px 33px;
+  background-image: url("https://www.figma.com/api/mcp/asset/e074bb1b-6e85-4b7a-930c-db69441f44a1.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.newsletter > svg {
+  flex: 0 0 54px;
+  width: 54px;
+  height: 42px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.5;
+}
+
+.newsletter h3 {
+  margin: 0;
+  font: 600 clamp(18px, 2.5vw, 25px)/1 Oswald, sans-serif;
+}
+
+.newsletter p {
+  max-width: 360px;
+  margin: 3px 0 0;
+  font: 500 clamp(11px, 1.5vw, 15px)/1.15 Oswald, sans-serif;
+}
+
+.newsletter form {
+  display: flex;
+  flex: 1 1 440px;
+  min-width: 0;
+  gap: 13px;
+  padding: 9px 15px;
+  border-radius: 10px;
+  background: #1a1a1a;
+}
+
+.newsletter input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: none;
+  color: #fff;
+  font: 700 18px Oswald, sans-serif;
+}
+
+.newsletter input::placeholder {
+  color: #fff;
+  opacity: .4;
+}
+
+.newsletter button {
+  flex: 0 1 235px;
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 10px 20px;
+  background: #6b6b47;
+  color: #fff;
+  font: 700 15px Montserrat, sans-serif;
+  cursor: pointer;
+}
+
+.footer-main {
+  display: flex;
+  padding: 19px 33px 26px;
+}
+
+.footer-main > div {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.footer-brand {
+  align-items: center !important;
+  justify-content: center;
+}
+
+.footer-brand strong {
+  font-size: 50px;
+}
+
+.footer-brand span {
+  font-size: 20px;
+}
+
+.footer-main b {
+  font: 600 20px Oswald, sans-serif;
+}
+
+.footer-main a {
+  color: rgba(255, 255, 255, .65);
+  text-decoration: none;
+  font: 600 14px/1.35 Oswald, sans-serif;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 33px;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 21px;
+}
+
+.social img {
+  width: 30px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.payments {
+  width: min(415px, 45%);
+  height: auto;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 760px) {
+  .topbar {
+    min-height: 143px;
+    padding: 20px 14px;
+    gap: 10px;
+  }
+
+  .brand strong {
+    font-size: 26px;
+  }
+
+  .brand span {
+    font-size: 16px;
+  }
+
+  .nav {
+    gap: 8px;
+  }
+
+  .nav a {
+    font-size: 14px;
+  }
+
+  .actions {
+    gap: 5px;
+  }
+
+  .actions button {
+    width: 27px;
+    height: 27px;
+  }
+
+  .hero-title {
+    font-size: 58px;
+    top: 22px;
+  }
+
+.services {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 21px; /* Mismo margen lateral de 21px que el resto de la página */
+  background: var(--paper);
+}
+
+.service {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+  align-items: center;
+  justify-content: center; /* Mantiene el icono y texto centrados en su cuadrante */
+  gap: 10px;
+  padding: 4px;
+}
+  .service svg {
+    flex-basis: 35px;
+    width: 48px;
+    height: 35px;
+  }
+
+  .service b {
+    font-size: 11px;
+  }
+
+  .service small {
+    font-size: 9px;
+  }
+
+  .catalog-section {
+    padding: 0 12px;
+  }
+
+  .section-heading {
+    min-height: 48px;
+  }
+
+  .product-row {
+    gap: 7px;
+  }
+
+  .product-card {
+    height: 205px;
+    border-radius: 10px;
+  }
+
+  .product-card b {
+    min-height: 35px;
+    padding: 7px;
+    font-size: 15px;
+  }
+
+  .footer {
+    padding: 0 0 14px 0;
+  }
+
+  .newsletter {
+    width: 100%;
+    padding: 20px 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .newsletter > svg {
+    width: 38px;
+    height: 30px;
+    flex-basis: 38px;
+  }
+
+  .newsletter > div {
+    flex: 1;
+  }
+
+  .newsletter form {
+    flex-basis: 100%;
+    padding: 6px 10px;
+  }
+
+  .newsletter button {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .footer-main {
+    padding: 20px 16px;
+    gap: 12px;
+  }
+
+  .footer-brand strong {
+    font-size: 30px;
+  }
+
+  .footer-brand span {
+    font-size: 13px;
+  }
+
+  .footer-main b {
+    font-size: 15px;
+  }
+
+  .footer-main a {
+    font-size: 11px;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 16px;
+  }
+
+  .payments {
+    width: 250px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav a:nth-child(3),
+  .nav a:nth-child(4) {
+    display: none;
+  }
+
+  .topbar {
+    min-height: 110px;
+  }
+
+  .hero {
+    height: 150px;
+  }
+
+  .hero-title {
+    font-size: 48px;
+    left: 7%;
+    top: 20px;
+  }
+
+  .services {
+    flex-wrap: wrap;
+  }
+
+  .service {
+    flex: 1 1 calc(50% - 4px);
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .service svg {
+    flex-basis: 42px;
+    width: 42px;
+  }
+
+  .product-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .product-card {
+    height: 190px;
+  }
+
+  .product-card b {
+    font-size: 14px;
+  }
+
+  .section-heading h2 {
+    font-size: 20px;
+  }
+
+  .section-heading a {
+    font-size: 15px;
+  }
+}
