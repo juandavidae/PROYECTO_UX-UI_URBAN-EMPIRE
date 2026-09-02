@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hombre | District.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="page-banner">
+    <h1>HOMBRE</h1>
+    <p>INICIO - HOMBRE</p>
+  </section>
+
+  <main class="catalog-layout">
+    <aside class="filters">
+      <h2>CATEGORIAS</h2>
+      <ul>
+        <li>Accesorios</li>
+        <li>Calzado</li>
+        <li><a href="camisetas.html">Camisetas</a></li>
+        <li><a href="camisetas.html">Camisetas Oversize</a></li>
+        <li>Chaquetas</li>
+        <li>Gafas</li>
+        <li>Pantalones</li>
+        <li>Hoddies</li>
+        <li>Bermudas</li>
+      </ul>
+
+      <h2>FILTRAR POR</h2>
+      <h3>TALLA</h3>
+      <label><input type="checkbox"> S</label>
+      <label><input type="checkbox"> M</label>
+      <label><input type="checkbox"> L</label>
+      <label><input type="checkbox"> XL</label>
+      <label><input type="checkbox"> XXL</label>
+
+      <h3>COLOR</h3>
+      <div class="swatches">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+    </aside>
+
+    <section class="catalog">
+      <div class="catalog-toolbar">
+        <span class="view-icons">▦ ☷</span>
+        <select aria-label="Ordenar">
+          <option>Ordenar por</option>
+          <option>Precio menor</option>
+          <option>Precio mayor</option>
+        </select>
+      </div>
+      <div class="product-grid" data-products="men"></div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Factura y Feedback | District.</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="page-banner">
+    <h1>FACTURA Y FEEDBACK</h1>
+    <p>INICIO - HOMBRE - CAMISETAS OVERSIZE - FACTURA Y FEEDBACK</p>
+  </section>
+
+  <main class="checkout-page">
+    <section class="checkout-form">
+      <h2>DATOS DE PAGO</h2>
+      <form id="checkout-form">
+        <label>
+          Nombre completo
+          <input required type="text" placeholder="Juan Pérez">
+        </label>
+        <label>
+          Correo electrónico
+          <input required type="email" placeholder="correo@ejemplo.com">
+        </label>
+        <label>
+          Dirección de envío
+          <input required type="text" placeholder="Calle y número">
+        </label>
+        <label>
+          Número de tarjeta
+          <input required inputmode="numeric" placeholder="0000 0000 0000 0000">
+        </label>
+        <div class="form-row">
+          <label>
+            Vencimiento
+            <input required placeholder="MM/AA">
+          </label>
+          <label>
+            CVV
+            <input required inputmode="numeric" placeholder="123">
+          </label>
+        </div>
+        <button class="olive-button" type="submit">CONFIRMAR PAGO</button>
+      </form>
+    </section>
+
+    <aside class="invoice">
+      <h2>FACTURA</h2>
+      <h3>DATOS GENERALES</h3>
+      <p>Factura: #INV-2026-0842</p>
+      <p>Fecha: 19 Agosto de 2026</p>
+      <p>Cliente: Juan Pérez</p>
+      <hr>
+      <h3>DETALLES DEL PEDIDO</h3>
+      <div id="invoice-items"></div>
+      <hr>
+      <h3>TOTALES</h3>
+      <p>Subtotal: <span id="invoice-subtotal">$0.00</span></p>
+      <p>Descuento: -$5.00</p>
+      <p>Envío: $3.50</p>
+      <p>Impuestos (15%): $12.75</p>
+      <p><b>Total Pagado: <span id="invoice-total">$0.00</span></b></p>
+    </aside>
+  </main>
+
+  <section class="feedback">
+    <h2>ENCUESTA DE SATISFACCION</h2>
+    <label>¿Cómo calificarías tu experiencia general en nuestra web?</label>
+    <div class="stars">☆ ☆ ☆ ☆ ☆</div>
+    <label>
+      ¿Que es lo que mas te gusto de tu proceso de compra?
+      <textarea></textarea>
+    </label>
+    <label>
+      ¿Tuviste algun problema o inconveniente durante el pago o envio?
+      <textarea></textarea>
+    </label>
+    <label>
+      Dejanos tus sugerencias para mejorar nuestros servicios
+      <textarea></textarea>
+    </label>
+    <button class="olive-button">ENVIAR</button>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="script.js"></script>
+</body>
+</html>
