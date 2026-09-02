@@ -22,7 +22,7 @@ body {
 }
 
 .page {
-  width: min(100%, 1000px);
+  width: 100%;
   margin: 0 auto;
   background: var(--paper);
   overflow: hidden;
@@ -174,7 +174,7 @@ body {
 }
 
 .service svg {
-  flex: 0 0 76px;
+  flex: 0 0 50px;
   width: 76px;
   height: 55px;
   fill: none;
@@ -405,27 +405,51 @@ body {
 
 .footer-bottom {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  padding: 0 33px;
+  padding: 16px 33px;
+  background: #000;
+  width: 100%;
 }
 
+/* REDES SOCIALES EN TONO GRIS SUBTILS */
 .social {
   display: flex;
   align-items: center;
-  gap: 21px;
+  gap: 18px;
+  width: auto;
 }
 
-.social img {
-  width: 30px;
-  height: 20px;
-  object-fit: contain;
+.social a {
+  color: #777;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.2s ease;
 }
 
+.social a:hover {
+  color: #fff;
+}
+
+.social svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+/* LOGOS DE PAGO ALINEADOS */
 .payments {
-  width: min(415px, 45%);
-  height: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: auto;
+}
+
+.payments svg {
+  height: 15px;
+  width: auto;
+  display: block;
 }
 
 /* --- RESPONSIVE --- */
