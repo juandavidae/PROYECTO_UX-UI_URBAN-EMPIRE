@@ -39,6 +39,24 @@ body {
   color: #fff;
 }
 
+/* Oculto en PC por defecto */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-toggle svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+}
+
 .brand {
   flex: 1 1 150px;
   color: #fff;
@@ -413,9 +431,17 @@ body {
 /* --- RESPONSIVE --- */
 @media (max-width: 760px) {
   .topbar {
-    min-height: 143px;
-    padding: 20px 14px;
+    min-height: 70px;
+    padding: 15px 16px;
     gap: 10px;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .brand strong {
@@ -427,11 +453,26 @@ body {
   }
 
   .nav {
-    gap: 8px;
+    display: none;
+    position: absolute;
+    top: 100%;                   /* Se despliega justo debajo del topbar */
+    left: 0;
+    width: 100%;
+    background: #000;
+    flex-direction: column;
+    padding: 20px 0;
+    gap: 16px;
+    z-index: 100;
+    border-top: 1px solid #222;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+  }
+
+  .nav.active {
+    display: flex;
   }
 
   .nav a {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .actions {
@@ -447,6 +488,7 @@ body {
     font-size: 58px;
     top: 22px;
   }
+
 
 .services {
   display: flex;
@@ -575,7 +617,7 @@ body {
   }
 
   .topbar {
-    min-height: 110px;
+    min-height: 80px;
   }
 
   .hero {
