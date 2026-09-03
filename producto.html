@@ -1,3 +1,4 @@
+<!-- producto.html -->
 <!doctype html>
 <html lang="es">
 <head>
@@ -9,60 +10,35 @@
 <body>
   <div id="site-header"></div>
 
-  <main class="product-page" style="padding-top: 40px;">
-    <div class="product-detail-container">
-      
-      <!-- Galería: Imagen principal y 3 miniaturas interactivas -->
-      <div class="product-gallery">
-        <img id="main-image" class="main-image" src="" alt="Producto Principal">
-        <div class="thumbnails">
-          <!-- El JS inyecta los ángulos aquí -->
-        </div>
-      </div>
+  <section class="page-banner">
+    <h1>DETALLE DE PRODUCTO</h1>
+    <p class="sub-portada">INICIO - CATÁLOGO - PRODUCTO</p>
+  </section>
 
-      <!-- Información del producto con texto detallado -->
+  <main style="padding: 50px 0;">
+    <div class="product-detail-container">
+      <div class="product-gallery">
+        <img id="main-image" class="main-image" src="" alt="Producto">
+        <div class="thumbnails"></div>
+      </div>
       <div class="product-info">
         <h1 id="product-title">CARGANDO...</h1>
-        <div id="product-price" class="price">...</div>
-        
-        <p id="product-desc">Cargando descripción detallada...</p>
-        
-        <ul id="product-details-list"></ul>
-
+        <div class="price" id="product-price">$0.00</div>
+        <p id="product-desc"></p>
         <hr class="divider">
-
+        <ul id="product-details-list"></ul>
         <div class="color-selection">
-          <strong>COLOR: <span id="color-name" style="font-weight: normal; color: #444;">Estándar</span></strong>
-          <div class="swatches" style="margin-top: 12px;">
-            <i style="background: #4A3B32;"></i>
-            <i style="background: #6B2D31;"></i>
-            <i style="background: #000000;"></i>
-            <i style="background: #464B35;"></i>
-            <i style="background: #3B4B42;"></i>
+          <strong>COLOR:</strong> <span style="font-weight: 400; color: #555;">Estándar</span>
+          <div class="swatches">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
           </div>
         </div>
-
         <div class="add-to-cart-row">
-          <div class="quantity-control">
-            <button type="button">−</button>
-            <input type="text" value="1" readonly>
-            <button type="button">+</button>
-          </div>
-          
-          <button class="btn-add-cart">AÑADIR AL CARRITO</button>
-          
-          <button class="btn-icon" aria-label="Ver carrito">
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="9" cy="21" r="1.5"></circle>
-              <circle cx="20" cy="21" r="1.5"></circle>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-          </button>
+          <!-- Inyectado mediante script.js -->
         </div>
       </div>
     </div>
 
-    <!-- Sección de recomendados -->
     <section class="related-products-section">
       <div class="title-with-lines">
         <h2>TAMBIEN PODRIA INTERESARTE</h2>

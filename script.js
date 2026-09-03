@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const descEl = document.getElementById('product-desc');
             const imgEl = document.getElementById('main-image');
             const listEl = document.getElementById('product-details-list');
-            const cartBtn = document.querySelector('.btn-add-cart');
+            const actionContainer = document.querySelector('.add-to-cart-row');
 
             if (titleEl) titleEl.textContent = prod.name.toUpperCase();
             if (priceEl) priceEl.textContent = `$${prod.price.toFixed(2)}`;
@@ -241,19 +241,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 listEl.innerHTML = prod.details.map(detail => `<li>${detail}</li>`).join('');
             }
             
-            if (cartBtn) { cartBtn.dataset.id = prod.id; cartBtn.classList.add('add-to-cart'); }
+            if (actionContainer) {
+                actionContainer.innerHTML = `
+                    <div class="quantity-control">
+                        <button type="button" id="qty-minus">−</button>
+                        <input type="text" id="qty-input" value="1" readonly>
+                        <button type="button" id="qty-plus">+</button>
+                    </div>
+                    <a href="hombres.html" class="olive-button" style="flex: 1; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center;">SEGUIR COMPRANDO</a>
+                    <button class="btn-icon" id="btn-add-icon" aria-label="Añadir al carrito" data-id="${prod.id}">
+                        <svg viewBox="0 0 48 48" width="24" height="24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h6l4 24h23l5-17H14"/><circle cx="19" cy="40" r="3"/><circle cx="35" cy="40" r="3"/></svg>
+                    </button>
+                `;
+
+                let currentQty = 1;
+                document.getElementById('qty-minus').addEventListener('click', () => {
+                    if (currentQty > 1) {
+                        currentQty--;
+                        document.getElementById('qty-input').value = currentQty;
+                    }
+                });
+                document.getElementById('qty-plus').addEventListener('click', () => {
+                    currentQty++;
+                    document.getElementById('qty-input').value = currentQty;
+                });
+
+                document.getElementById('btn-add-icon').addEventListener('click', () => {
+                    const items = cart(), found = items.find(i => i.id === prod.id);
+                    if (found) found.qty += currentQty; 
+                    else items.push({ id: prod.id, qty: currentQty });
+                    saveCart(items);
+                    
+                    const cartCount = document.querySelector('.cart-count');
+                    if (cartCount) cartCount.textContent = items.reduce((a, p) => a + p.qty, 0);
+                    
+                    const iconBtn = document.getElementById('btn-add-icon');
+                    iconBtn.style.background = '#737359';
+                    setTimeout(() => { iconBtn.style.background = '#fff'; }, 1000);
+                });
+            }
         }
     }
-
-    document.querySelectorAll('.add-to-cart').forEach(btn => btn.addEventListener('click', () => {
-        const items = cart(), found = items.find(i => i.id === btn.dataset.id);
-        if (found) found.qty++; else items.push({ id: btn.dataset.id, qty: 1 });
-        saveCart(items);
-        btn.textContent = 'AÑADIDO';
-        const cartCount = document.querySelector('.cart-count');
-        if (cartCount) cartCount.textContent = items.reduce((a, p) => a + p.qty, 0);
-        setTimeout(() => btn.textContent = 'AÑADIR AL CARRITO', 1200)
-    }));
 
     document.addEventListener('click', e => {
         if (!e.target.dataset.cart) return;
