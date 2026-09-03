@@ -51,6 +51,8 @@ const PRODUCTS = [
 
 function header() { 
     const isLogged = localStorage.getItem('district_session') === 'active';
+    const accountLink = isLogged ? 'perfil.html' : 'login.html';
+
     return `<header class="site-header">
         <a class="brand" href="index.html"><strong>DISTRICT</strong><small>URBAN EMPIRE</small></a>
         <nav id="main-navigation">
@@ -62,7 +64,7 @@ function header() {
         </nav>
         <div class="actions">
             <button class="search-toggle" type="button" aria-label="Buscar" aria-expanded="false" aria-controls="site-search"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="11"/><path d="M28 28l10 10"/></svg></button>
-            <a aria-label="Mi cuenta" href="login.html"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M10 41c0-8 5.7-13 14-13s14 5 14 13"/></svg></a>
+            <a aria-label="Mi cuenta" href="${accountLink}"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M10 41c0-8 5.7-13 14-13s14 5 14 13"/></svg></a>
             <a aria-label="Carrito" href="carrito.html"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 8h6l4 24h23l5-17H14"/><circle cx="19" cy="40" r="2.5"/><circle cx="35" cy="40" r="2.5"/></svg><span class="cart-count">${cart().reduce((a, p) => a + p.qty, 0)}</span></a>
         </div>
         <form class="site-search" id="site-search" role="search" action="hombres.html" method="get">
@@ -163,10 +165,11 @@ function renderCart() {
     }).join('') : `<div class="empty-cart-state"><h3>TU CARRITO ESTÁ VACÍO</h3><a href="hombres.html" class="olive-button" style="padding:15px 30px; display:inline-block; text-decoration:none; margin-top:10px;">VER CATÁLOGO</a></div>`;
     
     const subtotal = items.reduce((sum, item) => { const p = PRODUCTS.find(x => x.id === item.id) || PRODUCTS[0]; return sum + (getFinalPrice(p) * item.qty); }, 0);
-    const shipping = items.length > 0 ? 3.50 : 0.00;
+    
+    let shipping = subtotal >= 80 ? 0.00 : (items.length > 0 ? 3.50 : 0.00);
     
     if(document.querySelector('#cart-subtotal')) document.querySelector('#cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
-    if(document.querySelector('#cart-shipping')) document.querySelector('#cart-shipping').textContent = `$${shipping.toFixed(2)}`;
+    if(document.querySelector('#cart-shipping')) document.querySelector('#cart-shipping').textContent = shipping === 0 ? 'GRATIS ($0.00)' : `$${shipping.toFixed(2)}`;
     if(document.querySelector('#cart-total')) document.querySelector('#cart-total').textContent = `$${(subtotal + shipping).toFixed(2)}`;
 }
 
@@ -184,10 +187,17 @@ function renderCheckoutInvoice() {
     const discountAmount = subtotal * appliedDiscountRate;
     const tax = (subtotal - discountAmount) * 0.15;
 
+    let shippingFee = subtotal >= 80 ? 0.00 : 3.50;
+
     if (document.querySelector('#invoice-subtotal')) document.querySelector('#invoice-subtotal').textContent = `$${subtotal.toFixed(2)}`;
     if (document.querySelector('#invoice-discount')) document.querySelector('#invoice-discount').textContent = `-$${discountAmount.toFixed(2)}`;
     if (document.querySelector('#invoice-tax')) document.querySelector('#invoice-tax').textContent = `$${tax.toFixed(2)}`;
-    if (document.querySelector('#invoice-total')) document.querySelector('#invoice-total').textContent = `$${(subtotal - discountAmount + tax + (items.length ? 3.5 : 0)).toFixed(2)}`;
+    
+    if (document.querySelector('#invoice-shipping')) {
+        document.querySelector('#invoice-shipping').textContent = shippingFee === 0 ? 'GRATIS ($0.00)' : `$${shippingFee.toFixed(2)}`;
+    }
+
+    if (document.querySelector('#invoice-total')) document.querySelector('#invoice-total').textContent = `$${(subtotal - discountAmount + tax + shippingFee).toFixed(2)}`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -280,20 +290,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ==========================================
-// NUEVO: PROTECCIÓN DEL BOTÓN DE PAGO
-// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    const btnCheckout = document.getElementById('btn-checkout');
+    const btnCheckout = document.querySelector('a[href="factura.html"], #btn-checkout, .btn-checkout');
     
     if (btnCheckout) {
         btnCheckout.addEventListener('click', (e) => {
-            e.preventDefault(); 
             const isLogged = localStorage.getItem('district_session');
             
-            if (isLogged === 'active') {
-                window.location.href = 'factura.html'; 
-            } else {
+            if (isLogged !== 'active') {
+                e.preventDefault(); 
                 alert('ACCESO DENEGADO: Debes iniciar sesión o registrarte para procesar tu pago.');
                 window.location.href = 'login.html';
             }

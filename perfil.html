@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi Perfil | District Urban Empire</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Fondo general oscuro de pantalla completa */
+    body {
+        background-color: #0a0a0a !important;
+        color: #fff;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 5%;
+    }
+    .profile-container {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+    .profile-card {
+        background: linear-gradient(135deg, #0d0d0d 0%, #141414 100%);
+        border: 1px solid #222;
+        border-radius: 16px;
+        padding: 60px 50px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(0, 0,0, 0.6);
+    }
+    /* Efecto visual de iluminación estilo industrial / urbano */
+    .profile-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 4px;
+        background: linear-gradient(90deg, var(--gold, #d4af37), #fff, var(--gold, #d4af37));
+    }
+    .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 45px;
+        border-bottom: 1px solid #222;
+        padding-bottom: 35px;
+    }
+    .profile-avatar {
+        width: 90px; height: 90px;
+        background: #1a1a1a;
+        border: 2px solid var(--gold, #d4af37);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 38px;
+        color: var(--gold, #d4af37);
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+    }
+    .profile-info h2 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 42px;
+        margin: 0 0 5px 0;
+        letter-spacing: 1.5px;
+    }
+    .profile-info p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        color: #888;
+        margin: 0;
+        letter-spacing: 0.5px;
+    }
+    .profile-details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 25px;
+        margin-bottom: 45px;
+    }
+    .detail-box {
+        background: #101010;
+        border: 1px solid #222;
+        padding: 22px 25px;
+        border-radius: 10px;
+        transition: border-color 0.3s ease;
+    }
+    .detail-box:hover {
+        border-color: #444;
+    }
+    .detail-box span {
+        display: block;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 8px;
+    }
+    .detail-box strong {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        color: #fff;
+    }
+    .profile-actions {
+        display: flex;
+        gap: 15px;
+    }
+    .btn-action {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 14px 30px;
+        border-radius: 8px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none;
+        letter-spacing: 1px;
+    }
+    .btn-primary-custom {
+        background: var(--gold, #d4af37);
+        color: #000;
+    }
+    .btn-primary-custom:hover {
+        background: #fff;
+        transform: translateY(-2px);
+    }
+    .btn-outline-custom {
+        background: transparent;
+        border: 1px solid #333;
+        color: #bbb;
+    }
+    .btn-outline-custom:hover {
+        border-color: #fff;
+        color: #fff;
+        transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  
+  <main>
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">IP</div>
+                <div class="profile-info">
+                    <h2 id="user-name-display">Isaac Pérez</h2>
+                    <p>Miembro oficial de District Urban Empire</p>
+                </div>
+            </div>
+
+            <div class="profile-details-grid">
+                <div class="detail-box">
+                    <span>Correo Electrónico</span>
+                    <strong>isaac.perez@puce.edu.ec</strong>
+                </div>
+                <div class="detail-box">
+                    <span>Estado de Cuenta</span>
+                    <strong style="color: #22c55e;">● Activo (Verificado)</strong>
+                </div>
+                <div class="detail-box">
+                    <span>Tipo de Usuario</span>
+                    <strong>Cliente Frecuente / VIP</strong>
+                </div>
+                <div class="detail-box">
+                    <span>Ciudad</span>
+                    <strong>Quito, Ecuador</strong>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <a href="hombres.html" class="btn-action btn-primary-custom">VER CATÁLOGO</a>
+                <button type="button" class="btn-action btn-outline-custom logout-btn-profile">CERRAR SESIÓN</button>
+            </div>
+        </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const isLogged = localStorage.getItem('district_session');
+        if (isLogged !== 'active') {
+            alert('Debes iniciar sesión para ver tu perfil.');
+            window.location.href = 'login.html';
+        }
+
+        const logoutBtn = document.querySelector('.logout-btn-profile');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('district_session');
+                window.location.href = 'index.html';
+            });
+        }
+    });
+  </script>
+</body>
+</html>
