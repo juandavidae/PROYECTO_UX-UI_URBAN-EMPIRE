@@ -50,6 +50,7 @@ const PRODUCTS = [
 ];
 
 function header() { 
+    const isLogged = localStorage.getItem('district_session') === 'active';
     return `<header class="site-header">
         <a class="brand" href="index.html"><strong>DISTRICT</strong><small>URBAN EMPIRE</small></a>
         <nav id="main-navigation">
@@ -57,6 +58,7 @@ function header() {
             <a href="hombres.html">HOMBRES</a>
             <a href="promociones.html">PROMOCIONES</a>
             <a href="servicios.html">SERVICIOS</a>
+            ${isLogged ? '<button class="logout-button" type="button">CERRAR SESIÓN</button>' : ''}
         </nav>
         <div class="actions">
             <button class="search-toggle" type="button" aria-label="Buscar" aria-expanded="false" aria-controls="site-search"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="11"/><path d="M28 28l10 10"/></svg></button>
@@ -192,6 +194,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('#site-header')) document.querySelector('#site-header').innerHTML = header();
     if (document.querySelector('#site-footer')) document.querySelector('#site-footer').innerHTML = footer();
     setupSearch();
+
+    const logoutButton = document.querySelector('.logout-button');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem('district_session');
+            window.location.href = 'index.html';
+        });
+    }
 
     const menuToggle = document.querySelector('.menu-toggle');
     const mainNavigation = document.querySelector('#main-navigation');
