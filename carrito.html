@@ -3,37 +3,239 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Carrito de Compras | District.</title>
+  <title>Carrito de Compras | District Urban Empire</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body { background-color: #fcfcfc; margin: 0; padding: 0; }
+
+    /* CONTENEDOR PRINCIPAL DEL CARRITO */
+    .cart-container { 
+        display: flex; 
+        gap: 50px; 
+        padding: 60px 5%; 
+        max-width: 1200px; 
+        margin: 0 auto; 
+        align-items: flex-start; 
+    }
+    
+    /* COLUMNA IZQUIERDA: LISTA DE PRODUCTOS */
+    .cart-column-items { flex: 2; }
+    .cart-column-items > h2 { 
+        font-family: 'Bebas Neue', sans-serif; 
+        font-size: 38px; 
+        border-bottom: 2px solid #111; 
+        padding-bottom: 15px; 
+        margin-bottom: 30px; 
+        letter-spacing: 1px;
+    }
+    
+    /* ==========================================
+       EL ARREGLO: DISEÑO HORIZONTAL DE LAS FILAS
+       ========================================== */
+    .cart-items-list {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .cart-row {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    /* Imagen pequeña y controlada */
+    .cart-row img {
+        width: 120px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 8px;
+        background-color: #f4f4f4;
+    }
+    
+    /* Detalles del producto al centro */
+    .cart-row > div:nth-child(2) {
+        flex: 1; /* Ocupa todo el espacio restante empujando los botones a la derecha */
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+    .cart-row h3 {
+        margin: 0;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 24px;
+        letter-spacing: 1px;
+        color: #111;
+    }
+    .cart-row .price {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        font-weight: 800;
+        color: #000;
+    }
+    .cart-row p {
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 13px;
+        color: #888;
+        font-weight: 500;
+    }
+    
+    /* Botones de cantidad y eliminar a la derecha */
+    .cart-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+    }
+    .cart-controls button {
+        background: #f0f0f0;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        color: #111;
+        transition: background 0.2s;
+    }
+    .cart-controls button:hover { background: #e0e0e0; }
+    
+    /* Botón rojo de eliminar */
+    .cart-controls button.remove {
+        background: none;
+        width: auto;
+        color: #dc2626;
+        text-decoration: underline;
+        font-size: 13px;
+        margin-left: 20px;
+    }
+    .cart-controls button.remove:hover { color: #991b1b; background: none; }
+
+    /* ESTADO VACÍO */
+    .empty-cart-state {
+        text-align: center;
+        padding: 50px 0;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .empty-cart-state h3 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; margin-bottom: 20px;}
+
+    /* COLUMNA DERECHA: RESUMEN DE ORDEN */
+    .cart-column-summary { 
+        flex: 1; 
+        background: #fff; 
+        border: 1px solid #eaeaea; 
+        padding: 35px; 
+        border-radius: 12px; 
+        box-shadow: 0 15px 30px rgba(0,0,0,0.04); 
+        position: sticky; 
+        top: 100px; 
+    }
+    .cart-column-summary h2 { 
+        font-family: 'Bebas Neue', sans-serif; 
+        font-size: 28px; 
+        border-bottom: 2px solid #111; 
+        padding-bottom: 12px; 
+        margin-bottom: 25px; 
+        letter-spacing: 1px;
+    }
+    
+    .summary-line { 
+        display: flex; 
+        justify-content: space-between; 
+        font-family: 'Montserrat', sans-serif; 
+        font-size: 14px; 
+        color: #555; 
+        margin-bottom: 18px; 
+    }
+    .summary-total { 
+        display: flex; 
+        justify-content: space-between; 
+        font-family: 'Montserrat', sans-serif; 
+        font-size: 22px; 
+        font-weight: 800; 
+        color: #111; 
+        margin-top: 25px; 
+        padding-top: 25px; 
+        border-top: 2px solid #eaeaea; 
+        margin-bottom: 25px;
+    }
+    
+    /* BOTÓN PROCEDER AL PAGO */
+    #btn-checkout { 
+        width: 100%; 
+        padding: 18px; 
+        background: #111; 
+        color: #fff; 
+        font-family: 'Montserrat', sans-serif; 
+        font-size: 14px; 
+        font-weight: 800; 
+        letter-spacing: 1px;
+        border: none; 
+        border-radius: 6px; 
+        cursor: pointer; 
+        transition: all 0.3s; 
+        text-align: center; 
+    }
+    #btn-checkout:hover { 
+        background: #bbb78b; 
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    @media (max-width: 900px) { 
+        .cart-container { flex-direction: column; } 
+        .cart-column-summary { width: 100%; box-sizing: border-box; } 
+        .cart-row { flex-direction: column; text-align: center; gap: 15px;}
+        .cart-row img { width: 100%; height: auto; max-width: 250px;}
+        .cart-controls { justify-content: center; width: 100%; }
+        .cart-controls button.remove { margin-left: 0; }
+    }
+  </style>
 </head>
 <body>
-  <div id="site-header"></div>
   
-  <section class="portada-unica-catalogo">
-    <h1 class="titulo-portada">CARRITO DE COMPRAS</h1>
-    <p class="sub-portada">INICIO - CARRITO DE COMPRAS</p>
+  <div id="site-header"></div>
+
+  <section class="page-banner">
+    <h1 style="display: none;">CARRITO DE COMPRAS</h1>
+    <p style="display: none;" class="sub-portada">INICIO - TU CARRITO</p>
   </section>
 
-  <main class="cart-page">
-    <div class="cart-container">
-      <div class="cart-items" id="cart-items"></div>
-      
-      <div class="cart-summary">
-        <h2>RESUMEN DEL PEDIDO</h2>
-        <div class="summary-row">
-          <span>Subtotal</span>
-          <span id="cart-subtotal">$0.00</span>
-        </div>
-        <div class="summary-row">
-          <span>Envío</span>
-          <span id="cart-shipping">$0.00</span>
-        </div>
-        <div class="summary-row total-row">
-          <span>TOTAL</span>
-          <span id="cart-total">$0.00</span>
-        </div>
-        <a href="checkout.html" class="btn-checkout">PROCEDER AL PAGO</a>
+  <main class="cart-container">
+    
+    <!-- PRODUCTOS -->
+    <div class="cart-column-items">
+      <h2>TU CARRITO</h2>
+      <div id="cart-items" class="cart-items-list">
+         <!-- Renderizado dinámico desde script.js -->
       </div>
+    </div>
+
+    <!-- RESUMEN DE ORDEN -->
+    <div class="cart-column-summary">
+      <h2>RESUMEN DE ORDEN</h2>
+      
+      <div class="summary-line">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">$0.00</span>
+      </div>
+      <div class="summary-line">
+        <span>Envío estimado</span>
+        <span id="cart-shipping">$0.00</span>
+      </div>
+      
+      <div class="summary-total">
+        <span>Total</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+
+      <button id="btn-checkout">PROCEDER AL PAGO</button>
+      
     </div>
   </main>
 

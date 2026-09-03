@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Promociones | District Urban Empire</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* BANNER PRINCIPAL ÚNICO (Eliminamos el banner extra) */
+    .promo-banner-custom {
+      background: linear-gradient(rgba(10, 10, 10, 0.6), rgba(5, 5, 5, 1)), url('https://www.figma.com/api/mcp/asset/c2ca3ee9-5835-41f2-8172-62e8388ed45e.png') center 30%/cover;
+      padding: 130px 5%;
+      text-align: center;
+      color: white;
+      margin-bottom: 60px;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    .promo-banner-custom h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(70px, 8vw, 110px); margin: 0; letter-spacing: 2px; line-height: 0.9; }
+    .promo-banner-custom h2 span { color: var(--gold); }
+    .promo-banner-custom p { font-family: 'Montserrat', sans-serif; font-size: 16px; margin-top: 15px; font-weight: 500; color: #d1d1d1; }
+    
+    /* NUEVO DISEÑO PREMIUM PARA LAS CARDS DE PROMOCIÓN */
+    .promo-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+        gap: 30px; 
+        padding: 0 5% 70px; 
+        max-width: 1300px; 
+        margin: 0 auto; 
+    }
+    .promo-card {
+        background: #0d0d0d;
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 40px 30px;
+        text-align: center;
+        position: relative;
+        transition: all 0.4s ease;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    /* Efecto de luz de fondo sutil al hacer hover */
+    .promo-card::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: radial-gradient(circle, rgba(187, 183, 139, 0.08) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+        pointer-events: none;
+    }
+    .promo-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--gold);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .promo-card:hover::before {
+        opacity: 1;
+    }
+    
+    /* Contenido de la tarjeta */
+    .promo-content { position: relative; z-index: 1; }
+    
+    .promo-badge {
+        display: inline-block;
+        background: var(--gold);
+        color: #000;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        padding: 6px 14px;
+        border-radius: 30px;
+        margin-bottom: 25px;
+    }
+    .promo-card h3 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 55px;
+        margin: 0;
+        color: #fff;
+        line-height: 1;
+        letter-spacing: 1px;
+    }
+    .promo-card h4 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--gold);
+        margin: 10px 0 20px 0;
+        letter-spacing: 2px;
+    }
+    .promo-card p {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        color: #888;
+        line-height: 1.6;
+        margin-bottom: 35px;
+    }
+    
+    /* Caja del código */
+    .promo-code-box {
+        background: #171717;
+        border: 1px solid #333;
+        border-radius: 8px;
+        padding: 18px;
+        position: relative;
+        z-index: 1;
+        transition: border 0.3s ease;
+    }
+    .promo-card:hover .promo-code-box {
+        border-color: #555;
+    }
+    .promo-code-box .code {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+  
+  <main>
+    <div class="promo-banner-custom">
+        <h2>MID-SEASON <span>SALE</span></h2>
+        <p>Renueva tu estilo con los mejores descuentos de la temporada urbana.</p>
+    </div>
+
+    <!-- CARDS CON EL NUEVO DISEÑO EDITORIAL/URBANO -->
+    <div class="promo-grid">
+        <div class="promo-card">
+            <div class="promo-content">
+                <div class="promo-badge">CUPÓN</div>
+                <h3>10% OFF</h3>
+                <h4>EN TU COMPRA</h4>
+                <p>Aplica este código en tu carrito de compras para obtener un descuento inmediato (Válido en nueva colección).</p>
+            </div>
+            <div class="promo-code-box">
+                <span class="code" style="color: #fff;">URBANEMPIRE26</span>
+            </div>
+        </div>
+        
+        <div class="promo-card">
+            <div class="promo-content">
+                <div class="promo-badge">BENEFICIO</div>
+                <h3>ENVÍO GRATIS</h3>
+                <h4>A TODO EL PAÍS</h4>
+                <p>En todas tus compras mayores a $60.00 el envío va por nuestra cuenta a cualquier parte del territorio nacional.</p>
+            </div>
+            <div class="promo-code-box">
+                <span class="code" style="color: #666;">AUTOMÁTICO</span>
+            </div>
+        </div>
+
+        <div class="promo-card">
+            <div class="promo-content">
+                <div class="promo-badge">OFERTA</div>
+                <h3>2X1</h3>
+                <h4>EN BÁSICOS</h4>
+                <p>Lleva dos prendas de la colección de básicos minimalistas y paga solo una. El descuento se aplica directo al carrito.</p>
+            </div>
+            <div class="promo-code-box">
+                <span class="code" style="color: #666;">SIN CÓDIGO</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="related-products-section">
+        <div class="title-with-lines"><h2>PRENDAS CON DESCUENTO</h2></div>
+        <!-- Esta etiqueta data-products="promos" hace que el JS tache el precio original -->
+        <div class="product-grid" data-products="promos"></div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -4,13 +4,23 @@ function renderInternalBannerImage() {
         const image = document.createElement('img');
         image.className = 'banner-image';
         
-        // Evita que el código colapse si no encuentra el h1
         const h1 = banner.querySelector('h1');
         const title = h1 ? h1.textContent.trim() : 'CAMISETAS OVERSIZE';
         
-        image.src = title === 'HOMBRE' ? 'https://www.figma.com/api/mcp/asset/3d2a7fdd-cada-4bcd-9894-427d1153ced1.png' : title === 'CAMISETAS OVERSIZE' ? 'https://www.figma.com/api/mcp/asset/03effb12-800c-4a61-b912-5f9be3c3e726.png' : title === 'FACTURA Y FEEDBACK' || title === 'CARRITO DE COMPRAS' ? 'https://www.figma.com/api/mcp/asset/41720044-0188-4125-ab88-5fa31352a6ab.png' : 'https://www.figma.com/api/mcp/asset/03effb12-800c-4a61-b912-5f9be3c3e726.png';
+        if (title === 'HOMBRE') {
+            image.src = 'https://www.figma.com/api/mcp/asset/3d2a7fdd-cada-4bcd-9894-427d1153ced1.png';
+        } else if (title === 'CAMISETAS OVERSIZE') {
+            image.src = 'https://www.figma.com/api/mcp/asset/03effb12-800c-4a61-b912-5f9be3c3e726.png';
+        } else if (title === 'PROMOCIONES' || title === 'SERVICIOS') {
+            image.src = 'https://www.figma.com/api/mcp/asset/c2ca3ee9-5835-41f2-8172-62e8388ed45e.png';
+        } else if (title === 'FACTURA Y FEEDBACK' || title === 'CARRITO DE COMPRAS') {
+            image.src = 'https://www.figma.com/api/mcp/asset/41720044-0188-4125-ab88-5fa31352a6ab.png';
+        } else {
+            image.src = 'https://www.figma.com/api/mcp/asset/03effb12-800c-4a61-b912-5f9be3c3e726.png';
+        }
+        
         image.alt = '';
-        banner.prepend(image)
+        banner.prepend(image);
     })
 }
 document.addEventListener('DOMContentLoaded', renderInternalBannerImage);
@@ -21,58 +31,22 @@ function renderViewIcons() {
 }
 
 const PRODUCTS = [
-    { 
-        id: 'green-shirt', name: 'Camiseta Oversize Verde', price: 25, 
-        image: 'assets/camiseta-verde-grafica.svg', 
-        images: ['assets/camiseta-verde-grafica.svg', 'assets/camiseta-verde.svg', 'https://www.figma.com/api/mcp/asset/e42c0d7a-1e4d-447d-b828-ed0df0ee39a8.png'],
-        desc: 'Camiseta relajada de algodón premium con fit oversize. Perfecta para un look urbano y cómodo.', 
-        details: ['<strong>Color:</strong> Verde lavado', '<strong>Tela:</strong> 100% algodón premium', '<strong>Gramaje:</strong> 240 GSM', '<strong>Corte:</strong> Oversize', '<strong>Cuello:</strong> Redondo y acanalado', '<strong>Estampado:</strong> Serigrafía frontal y trasera', '<strong>Hecho en Ecuador</strong>'] 
-    },
-    { 
-        id: 'windbreaker', name: 'Nike Windbreaker', price: 50, 
-        image: 'https://www.figma.com/api/mcp/asset/c2ca3ee9-5835-41f2-8172-62e8388ed45e.png', 
-        images: ['https://www.figma.com/api/mcp/asset/c2ca3ee9-5835-41f2-8172-62e8388ed45e.png', 'https://www.figma.com/api/mcp/asset/5f277386-f194-4230-8ed0-dde52b477b0f.png', 'https://www.figma.com/api/mcp/asset/3165740d-cf78-4275-8f8f-5df54e3ff880.png'],
-        desc: 'Chaqueta ligera rompevientos diseñada para ofrecer máxima movilidad y protección superior contra los elementos climaticos urbanos.', 
-        details: ['<strong>Material:</strong> 100% Poliéster impermeable', '<strong>Forro:</strong> Malla transpirable avanzada', '<strong>Ajuste:</strong> Regular fit urbano', '<strong>Cierre:</strong> Cremallera frontal completa reforzada'] 
-    },
-    { 
-        id: 'brown-polo', name: 'Polo Oversize Marrón', price: 20, 
-        image: 'assets/polo-marron.svg', 
-        images: ['assets/polo-marron.svg', 'https://www.figma.com/api/mcp/asset/5f277386-f194-4230-8ed0-dde52b477b0f.png'],
-        desc: 'Polo de corte urbano moderno con detalles en contraste sutiles. Confeccionada en tejido grueso de alta calidad para un porte impecable.', 
-        details: ['<strong>Color:</strong> Marrón tierra', '<strong>Tela:</strong> 100% algodón de alto gramaje', '<strong>Corte:</strong> Oversize contemporáneo', '<strong>Hecho en Ecuador</strong>'] 
-    },
-    { id: 'black-red-shirt', name: 'Camiseta Oversize Negra Roja', price: 20, image: 'assets/camiseta-negra-roja.svg', images: ['assets/camiseta-negra-roja.svg'], desc: 'Camiseta oversize de algodón con gráfico urbano en contraste.', details: ['<strong>Color:</strong> Negro', '<strong>Corte:</strong> Oversize'] },
-    { id: 'black-white-red-shirt', name: 'Camiseta Oversize Negra Blanca', price: 20, image: 'assets/camiseta-negra-blanca-roja.svg', images: ['assets/camiseta-negra-blanca-roja.svg'], desc: 'Camiseta oversize con estampado gráfico de inspiración urbana.', details: ['<strong>Color:</strong> Negro', '<strong>Corte:</strong> Oversize'] },
-    { id: 'black-blue-shirt', name: 'Camiseta Oversize Negra Azul', price: 20, image: 'assets/camiseta-negra-azul.svg', images: ['assets/camiseta-negra-azul.svg'], desc: 'Camiseta oversize negra con gráfico azul de gran formato.', details: ['<strong>Color:</strong> Negro', '<strong>Corte:</strong> Oversize'] },
-    { id: 'gray-logo-shirt', name: 'Camiseta Oversize Gris Logo', price: 20, image: 'assets/camiseta-gris-logo.svg', images: ['assets/camiseta-gris-logo.svg'], desc: 'Camiseta oversize gris con detalle de logo minimalista.', details: ['<strong>Color:</strong> Gris', '<strong>Corte:</strong> Oversize'] },
-    { id: 'burgundy-shirt', name: 'Camiseta Oversize Vino', price: 20, image: 'assets/camiseta-vino-grafica.svg', images: ['assets/camiseta-vino-grafica.svg'], desc: 'Camiseta oversize color vino con estampado frontal.', details: ['<strong>Color:</strong> Vino', '<strong>Corte:</strong> Oversize'] },
-    { id: 'charcoal-shirt', name: 'Camiseta Oversize Carbón', price: 20, image: 'assets/camiseta-gris-oscura.svg', images: ['assets/camiseta-gris-oscura.svg'], desc: 'Camiseta oversize carbón con detalles gráficos sutiles.', details: ['<strong>Color:</strong> Carbón', '<strong>Corte:</strong> Oversize'] },
-    { id: 'black-graphic-shirt', name: 'Camiseta Oversize Negra Gráfica', price: 20, image: 'assets/camiseta-negra-blanca.svg', images: ['assets/camiseta-negra-blanca.svg'], desc: 'Camiseta oversize negra con estampado tipográfico frontal.', details: ['<strong>Color:</strong> Negro', '<strong>Corte:</strong> Oversize'] },
-    { id: 'black-figure-shirt', name: 'Camiseta Oversize Negra Figura', price: 20, image: 'assets/camiseta-negra-figura.svg', images: ['assets/camiseta-negra-figura.svg'], desc: 'Camiseta oversize negra con ilustración central.', details: ['<strong>Color:</strong> Negro', '<strong>Corte:</strong> Oversize'] },
-    { id: 'gray-shirt', name: 'Camiseta Oversize Gris', price: 20, image: 'assets/camiseta-gris-clara.svg', images: ['assets/camiseta-gris-clara.svg'], desc: 'Camiseta oversize gris de estética minimalista.', details: ['<strong>Color:</strong> Gris claro', '<strong>Corte:</strong> Oversize'] },
-    { id: 'white-shirt', name: 'Camiseta Oversize Blanca', price: 20, image: 'assets/camiseta-blanca.svg', images: ['assets/camiseta-blanca.svg'], desc: 'Camiseta oversize blanca con detalles gráficos en contraste.', details: ['<strong>Color:</strong> Blanco', '<strong>Corte:</strong> Oversize'] },
-    { 
-        id: 'shorts', name: 'Bermuda de Felpa', price: 20, 
-        image: 'https://www.figma.com/api/mcp/asset/1b375efe-0fee-4507-8f22-a5ebc0d835ea.png', 
-        images: ['https://www.figma.com/api/mcp/asset/1b375efe-0fee-4507-8f22-a5ebc0d835ea.png', 'https://www.figma.com/api/mcp/asset/915b5340-de56-4ec2-8def-dff1b1e490ae.png'],
-        desc: 'Bermuda ultra cómoda creada para el día a día en la ciudad. Estilo streetwear minimalista con acabados de primera calidad.', 
-        details: ['<strong>Material:</strong> Felpa francesa (French Terry)', '<strong>Cintura:</strong> Elástica con cordón de ajuste reforzado', '<strong>Bolsillos:</strong> Laterales profundos', '<strong>Corte:</strong> Relajado'] 
-    },
-    { 
-        id: 'wide-leg', name: 'Pantalón Wide-Leg', price: 35, 
-        image: 'https://www.figma.com/api/mcp/asset/ef349c39-cdda-476c-ae2f-5a0c9aea3a21.png', 
-        images: ['https://www.figma.com/api/mcp/asset/ef349c39-cdda-476c-ae2f-5a0c9aea3a21.png', 'https://www.figma.com/api/mcp/asset/915b5340-de56-4ec2-8def-dff1b1e490ae.png'],
-        desc: 'Pantalón ancho de mezclilla oscura con caída fluida y natural. Diseñado para destacar con tus zapatillas favoritas.', 
-        details: ['<strong>Tela:</strong> Denim 12oz de alta resistencia', '<strong>Corte:</strong> Wide-leg (Bota ancha)', '<strong>Tiro:</strong> Medio-alto', '<strong>Lavado:</strong> Vintage oscuro'] 
-    },
-    { 
-        id: 'beanie', name: 'Gorro cuff gris', price: 15, 
-        image: 'https://www.figma.com/api/mcp/asset/84fbb8c0-d0b9-4ec5-93f0-1cbc18584afc.png', 
-        images: ['https://www.figma.com/api/mcp/asset/84fbb8c0-d0b9-4ec5-93f0-1cbc18584afc.png'],
-        desc: 'Gorro tejido de invierno estilo cuff en color gris neutro.', 
-        details: ['<strong>Material:</strong> Lana acrílica suave', '<strong>Talla:</strong> Única ajustable'] 
-    }
+    { id: 'green-shirt', name: 'Camiseta Oversize Verde', price: 25, image: 'assets/camiseta-verde-grafica.svg', images: ['assets/camiseta-verde-grafica.svg', 'assets/camiseta-verde.svg', 'https://www.figma.com/api/mcp/asset/e42c0d7a-1e4d-447d-b828-ed0df0ee39a8.png'], desc: 'Camiseta relajada de algodón premium.', details: ['<strong>Color:</strong> Verde', '<strong>Tela:</strong> 100% algodón', '<strong>Corte:</strong> Oversize'] },
+    { id: 'windbreaker', name: 'Nike Windbreaker', price: 50, image: 'https://www.figma.com/api/mcp/asset/c2ca3ee9-5835-41f2-8172-62e8388ed45e.png', images: ['https://www.figma.com/api/mcp/asset/c2ca3ee9-5835-41f2-8172-62e8388ed45e.png', 'https://www.figma.com/api/mcp/asset/5f277386-f194-4230-8ed0-dde52b477b0f.png', 'https://www.figma.com/api/mcp/asset/3165740d-cf78-4275-8f8f-5df54e3ff880.png'], desc: 'Chaqueta ligera rompevientos.', details: ['<strong>Material:</strong> 100% Poliéster'] },
+    { id: 'brown-polo', name: 'Polo Oversize Marrón', price: 20, image: 'assets/polo-marron.svg', images: ['assets/polo-marron.svg', 'https://www.figma.com/api/mcp/asset/5f277386-f194-4230-8ed0-dde52b477b0f.png'], desc: 'Polo de corte urbano moderno.', details: ['<strong>Color:</strong> Marrón', '<strong>Corte:</strong> Oversize'] },
+    { id: 'black-red-shirt', name: 'Camiseta Oversize Negra Roja', price: 20, isPromo: true, image: 'assets/camiseta-negra-roja.svg', images: ['assets/camiseta-negra-roja.svg'], desc: 'Destaca por su imponente gráfico.', details: ['<strong>Color:</strong> Negro'] },
+    { id: 'black-white-red-shirt', name: 'Camiseta Oversize Negra Blanca', price: 20, isPromo: true, image: 'assets/camiseta-negra-blanca-roja.svg', images: ['assets/camiseta-negra-blanca-roja.svg'], desc: 'Base negra profunda con detalles.', details: ['<strong>Color:</strong> Negro/Blanco'] },
+    { id: 'black-blue-shirt', name: 'Camiseta Oversize Negra Azul', price: 20, isPromo: true, image: 'assets/camiseta-negra-azul.svg', images: ['assets/camiseta-negra-azul.svg'], desc: 'Minimalismo oscuro y color vibrante.', details: ['<strong>Color:</strong> Negro/Azul'] },
+    { id: 'gray-logo-shirt', name: 'Camiseta Oversize Gris Logo', price: 20, isPromo: true, image: 'assets/camiseta-gris-logo.svg', images: ['assets/camiseta-gris-logo.svg'], desc: 'Los básicos reimaginados.', details: ['<strong>Color:</strong> Gris'] },
+    { id: 'burgundy-shirt', name: 'Camiseta Oversize Vino', price: 20, isPromo: true, image: 'assets/camiseta-vino-grafica.svg', images: ['assets/camiseta-vino-grafica.svg'], desc: 'Tono vino profundo.', details: ['<strong>Color:</strong> Vino Tinto'] },
+    { id: 'charcoal-shirt', name: 'Camiseta Oversize Carbón', price: 20, isPromo: true, image: 'assets/camiseta-gris-oscura.svg', images: ['assets/camiseta-gris-oscura.svg'], desc: 'Estética vintage y desgastada.', details: ['<strong>Color:</strong> Gris Carbón'] },
+    { id: 'black-graphic-shirt', name: 'Camiseta Oversize Negra Gráfica', price: 20, image: 'assets/camiseta-negra-blanca.svg', images: ['assets/camiseta-negra-blanca.svg'], desc: 'Declaración de intenciones.', details: ['<strong>Color:</strong> Negro'] },
+    { id: 'black-figure-shirt', name: 'Camiseta Oversize Negra Figura', price: 20, image: 'assets/camiseta-negra-figura.svg', images: ['assets/camiseta-negra-figura.svg'], desc: 'Arte urbano hecho prenda.', details: ['<strong>Color:</strong> Negro'] },
+    { id: 'gray-shirt', name: 'Camiseta Oversize Gris', price: 20, image: 'assets/camiseta-gris-clara.svg', images: ['assets/camiseta-gris-clara.svg'], desc: 'La versatilidad en su máxima expresión.', details: ['<strong>Color:</strong> Gris claro'] },
+    { id: 'white-shirt', name: 'Camiseta Oversize Blanca', price: 20, image: 'assets/camiseta-blanca.svg', images: ['assets/camiseta-blanca.svg'], desc: 'Fresca, impecable y esencial.', details: ['<strong>Color:</strong> Blanco óptico'] },
+    { id: 'shorts', name: 'Bermuda de Felpa', price: 20, image: 'https://www.figma.com/api/mcp/asset/1b375efe-0fee-4507-8f22-a5ebc0d835ea.png', images: ['https://www.figma.com/api/mcp/asset/1b375efe-0fee-4507-8f22-a5ebc0d835ea.png', 'https://www.figma.com/api/mcp/asset/915b5340-de56-4ec2-8def-dff1b1e490ae.png'], desc: 'Bermuda ultra cómoda.', details: ['<strong>Material:</strong> Felpa'] },
+    { id: 'wide-leg', name: 'Pantalón Wide-Leg', price: 35, image: 'https://www.figma.com/api/mcp/asset/ef349c39-cdda-476c-ae2f-5a0c9aea3a21.png', images: ['https://www.figma.com/api/mcp/asset/ef349c39-cdda-476c-ae2f-5a0c9aea3a21.png', 'https://www.figma.com/api/mcp/asset/915b5340-de56-4ec2-8def-dff1b1e490ae.png'], desc: 'Pantalón ancho de estética militar.', details: ['<strong>Corte:</strong> Wide-leg'] },
+    { id: 'beanie', name: 'Gorro cuff gris', price: 15, image: 'https://www.figma.com/api/mcp/asset/84fbb8c0-d0b9-4ec5-93f0-1cbc18584afc.png', images: ['https://www.figma.com/api/mcp/asset/84fbb8c0-d0b9-4ec5-93f0-1cbc18584afc.png'], desc: 'Gorro tejido de invierno.', details: ['<strong>Material:</strong> Acrílico'] }
 ];
 
 function header() { 
@@ -81,12 +55,12 @@ function header() {
         <nav>
             <a href="index.html">INICIO</a>
             <a href="hombres.html">HOMBRES</a>
-            <a href="hombres.html">PROMOCIONES</a>
-            <a href="hombres.html">SERVICIOS</a>
+            <a href="promociones.html">PROMOCIONES</a>
+            <a href="servicios.html">SERVICIOS</a>
         </nav>
         <div class="actions">
             <button aria-label="Buscar"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="11"/><path d="M28 28l10 10"/></svg></button>
-            <a aria-label="Mi cuenta" href="#"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M10 41c0-8 5.7-13 14-13s14 5 14 13"/></svg></a>
+            <a aria-label="Mi cuenta" href="login.html"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M10 41c0-8 5.7-13 14-13s14 5 14 13"/></svg></a>
             <a aria-label="Carrito" href="carrito.html"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 8h6l4 24h23l5-17H14"/><circle cx="19" cy="40" r="2.5"/><circle cx="35" cy="40" r="2.5"/></svg><span class="cart-count">${cart().reduce((a, p) => a + p.qty, 0)}</span></a>
         </div>
     </header>`;
@@ -97,26 +71,14 @@ function footer() {
         <div class="newsletter">
             <img class="newsletter-icon" src="https://www.figma.com/api/mcp/asset/db85dac8-9863-4eb8-b3b7-eb58add4e667.svg" alt="">
             <div class="newsletter-copy">
-                <b>SE EL PRIMERO EN ENTERARTE</b>
-                <small>Suscribete y recibe noticias de lanzamientos,<br>ofertas exclusivas y mas.</small>
+                <b>SE EL PRIMERO EN ENTERARTE</b><small>Suscribete y recibe ofertas.</small>
             </div>
             <form><input type="email" placeholder="Ingresa tu correo electronico"><button>SUSCRIBIRME</button></form>
         </div>
         <div class="footer-main">
-            <div class="footer-brand">DISTRICT.<small>URBAN EMPIRE</small>
-                <div class="footer-social">
-                    <img src="https://www.figma.com/api/mcp/asset/c14aa1a9-5c67-4f9f-bc7b-9390a39fdf5f.svg" alt="Facebook">
-                    <img src="https://www.figma.com/api/mcp/asset/bf7cc6c6-a1a5-4b4c-b31e-77a00a275cb8.svg" alt="Twitter">
-                    <img src="https://www.figma.com/api/mcp/asset/65e70907-a88f-4dc9-8891-6890e4d89c1b.svg" alt="Instagram">
-                    <img src="https://www.figma.com/api/mcp/asset/c93d2bce-e85c-4d5b-b267-9dd0de5072fb.svg" alt="LinkedIn">
-                </div>
-            </div>
-            <div><h3>TIENDA</h3><p>Inicio<br>Hombre<br>Promociones<br>Accesorios</p></div>
-            <div><h3>SERVICIOS</h3><p>Probador virtual<br>Guia de tallas<br>Cambios y devoluciones</p></div>
-            <div class="footer-about">
-                <h3>NOSOTROS</h3><p>Trabaja con nosotros<br>Contacto<br>Blog</p>
-                <img class="footer-payments" src="https://www.figma.com/api/mcp/asset/1e3aa2c4-2d71-4bdc-a642-428134e253e5.svg" alt="Medios de pago">
-            </div>
+            <div class="footer-brand">DISTRICT.<small>URBAN EMPIRE</small></div>
+            <div><h3>TIENDA</h3><p>Inicio<br>Hombre<br>Promociones</p></div>
+            <div><h3>SERVICIOS</h3><p>Probador virtual<br>Guia de tallas</p></div>
             <div class="copyright">© 2026 Urban Empire. Todos los derechos reservados.</div>
         </div>
     </footer>`; 
@@ -124,24 +86,33 @@ function footer() {
 
 function cart() { return JSON.parse(localStorage.getItem('district-cart') || '[]') }
 function saveCart(value) { localStorage.setItem('district-cart', JSON.stringify(value)) }
+function getFinalPrice(product) { return product.isPromo ? product.price * 0.8 : product.price; }
 
-function productCard(p) { return `<article class="product-card"><a href="producto.html?id=${p.id}"><img src="${p.image}" alt="${p.name}"></a><span class="heart">♡</span><div class="card-copy"><strong>${p.name}</strong><span>$ ${p.price.toFixed(2)}</span></div></article>` }
+function productCard(p) { 
+    let priceDisplay = `<span>$ ${p.price.toFixed(2)}</span>`;
+    if (p.isPromo) {
+        priceDisplay = `<span style="text-decoration: line-through; color: #a1a1aa; margin-right: 8px; font-size: 13px;">$ ${p.price.toFixed(2)}</span><span style="color: #dc2626; font-weight: 700; font-size: 14px;">$ ${getFinalPrice(p).toFixed(2)}</span>`;
+    }
+    return `<article class="product-card"><a href="producto.html?id=${p.id}"><img src="${p.image}" alt="${p.name}"></a><div class="card-copy"><strong>${p.name}</strong>${priceDisplay}</div></article>`;
+}
 
 function renderProducts() {
+    const sortSelect = document.querySelector('.sort-by');
+    const sortValue = sortSelect ? sortSelect.value : 'default';
+
     document.querySelectorAll('[data-products]').forEach(container => {
-        let list = PRODUCTS;
-        if (container.dataset.products === 'men') list = [...PRODUCTS, ...PRODUCTS, ...PRODUCTS];
+        let list = [...PRODUCTS];
+        if (container.dataset.products === 'men') list = [...PRODUCTS]; 
         if (container.dataset.products === 'new') list = PRODUCTS.filter(product => product.id !== 'green-shirt');
-        
-        // NUEVA REGLA: Filtra solo las camisetas para tu nueva página
         if (container.dataset.products === 'shirts') list = PRODUCTS.filter(p => p.name.includes('Camiseta') || p.name.includes('Polo'));
-        
-        if (container.dataset.products === 'recommendations') {
-            const sampleItem = PRODUCTS.find(x => x.id === 'wide-leg') || PRODUCTS[0];
-            list = Array(8).fill(sampleItem);
-        }
-        container.innerHTML = list.map(productCard).join('')
-    })
+        if (container.dataset.products === 'promos') list = PRODUCTS.filter(p => p.isPromo);
+        if (container.dataset.products === 'recommendations') list = PRODUCTS.slice(0, 4);
+
+        if (sortValue === 'price-asc') list.sort((a, b) => getFinalPrice(a) - getFinalPrice(b));
+        else if (sortValue === 'price-desc') list.sort((a, b) => getFinalPrice(b) - getFinalPrice(a));
+
+        container.innerHTML = list.map(p => productCard(p)).join('');
+    });
 }
 
 function renderCart() {
@@ -151,57 +122,35 @@ function renderCart() {
     
     target.innerHTML = items.length ? items.map(item => {
         const p = PRODUCTS.find(x => x.id === item.id) || PRODUCTS[0];
-        return `<div class="cart-row"><img src="${p.image}" alt="${p.name}"><div><h3>${p.name}</h3><strong class="price">$${p.price.toFixed(2)}</strong><p>Talla: M</p></div><div class="cart-controls"><button data-cart="minus" data-id="${p.id}">−</button> ${item.qty} <button data-cart="plus" data-id="${p.id}">+</button> <button class="remove" data-cart="remove" data-id="${p.id}">Eliminar</button></div></div>`
-    }).join('') : `
-        <div class="empty-cart-state">
-            <svg viewBox="0 0 24 24" width="64" height="64" stroke="#737359" stroke-width="1.5" fill="none"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
-            <h3>TU CARRITO ESTÁ VACÍO</h3>
-            <p>Explora nuestras colecciones urbanas y añade tus prendas favoritas.</p>
-            <a href="hombres.html" class="olive-button">VER CATÁLOGO →</a>
-        </div>
-    `;
+        return `<div class="cart-row"><img src="${p.image}" alt="${p.name}"><div><h3>${p.name}</h3><strong class="price">$${getFinalPrice(p).toFixed(2)}</strong><p>Talla: M</p></div><div class="cart-controls"><button data-cart="minus" data-id="${p.id}">−</button> ${item.qty} <button data-cart="plus" data-id="${p.id}">+</button> <button class="remove" data-cart="remove" data-id="${p.id}">Eliminar</button></div></div>`
+    }).join('') : `<div class="empty-cart-state"><h3>TU CARRITO ESTÁ VACÍO</h3><a href="hombres.html" class="olive-button" style="padding:15px 30px; display:inline-block; text-decoration:none; margin-top:10px;">VER CATÁLOGO</a></div>`;
     
-    const subtotal = items.reduce((sum, item) => {
-        const p = PRODUCTS.find(x => x.id === item.id) || PRODUCTS[0];
-        return sum + (p.price * item.qty);
-    }, 0);
-    
+    const subtotal = items.reduce((sum, item) => { const p = PRODUCTS.find(x => x.id === item.id) || PRODUCTS[0]; return sum + (getFinalPrice(p) * item.qty); }, 0);
     const shipping = items.length > 0 ? 3.50 : 0.00;
-    const total = subtotal + shipping;
     
     if(document.querySelector('#cart-subtotal')) document.querySelector('#cart-subtotal').textContent = `$${subtotal.toFixed(2)}`;
     if(document.querySelector('#cart-shipping')) document.querySelector('#cart-shipping').textContent = `$${shipping.toFixed(2)}`;
-    if(document.querySelector('#cart-total')) document.querySelector('#cart-total').textContent = `$${total.toFixed(2)}`;
+    if(document.querySelector('#cart-total')) document.querySelector('#cart-total').textContent = `$${(subtotal + shipping).toFixed(2)}`;
 }
 
 let appliedDiscountRate = 0;
-
 function renderCheckoutInvoice() {
     const invoiceItems = document.querySelector('#invoice-items');
     if (!invoiceItems) return;
-
     const items = cart();
     invoiceItems.innerHTML = items.length ? items.map(item => {
         const p = PRODUCTS.find(x => x.id === item.id) || PRODUCTS[0];
-        return `<div class="invoice-item-row"><span>${p.name} (x${item.qty})</span> <span>$${(p.price * item.qty).toFixed(2)}</span></div>`;
-    }).join('') : '<p>No hay artículos en el pedido.</p>';
+        return `<div class="invoice-item-row"><span>${p.name} (x${item.qty})</span> <span>$${(getFinalPrice(p) * item.qty).toFixed(2)}</span></div>`;
+    }).join('') : '<p>No hay artículos.</p>';
 
-    const subtotal = items.reduce((sum, item) => {
-        const p = PRODUCTS.find(x => x.id === item.id) || PRODUCTS[0];
-        return sum + (p.price * item.qty);
-    }, 0);
-
+    const subtotal = items.reduce((sum, item) => { const p = PRODUCTS.find(x => x.id === item.id) || PRODUCTS[0]; return sum + (getFinalPrice(p) * item.qty); }, 0);
     const discountAmount = subtotal * appliedDiscountRate;
-    const subtotalAfterDiscount = subtotal - discountAmount;
-    const shipping = items.length > 0 ? 3.50 : 0.00;
-    const tax = subtotalAfterDiscount * 0.15;
-    const total = subtotalAfterDiscount + shipping + tax;
+    const tax = (subtotal - discountAmount) * 0.15;
 
     if (document.querySelector('#invoice-subtotal')) document.querySelector('#invoice-subtotal').textContent = `$${subtotal.toFixed(2)}`;
     if (document.querySelector('#invoice-discount')) document.querySelector('#invoice-discount').textContent = `-$${discountAmount.toFixed(2)}`;
-    if (document.querySelector('#discount-label')) document.querySelector('#discount-label').textContent = appliedDiscountRate > 0 ? '10%' : '0%';
     if (document.querySelector('#invoice-tax')) document.querySelector('#invoice-tax').textContent = `$${tax.toFixed(2)}`;
-    if (document.querySelector('#invoice-total')) document.querySelector('#invoice-total').textContent = `$${total.toFixed(2)}`;
+    if (document.querySelector('#invoice-total')) document.querySelector('#invoice-total').textContent = `$${(subtotal - discountAmount + tax + (items.length ? 3.5 : 0)).toFixed(2)}`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -211,106 +160,51 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     renderCart();
     renderCheckoutInvoice();
+    
+    if (document.querySelector('.sort-by')) document.querySelector('.sort-by').addEventListener('change', renderProducts);
 
-    const applyBtn = document.getElementById('apply-coupon-btn');
-    if (applyBtn) {
-        applyBtn.addEventListener('click', () => {
-            const codeInput = document.getElementById('coupon-input');
+    if (document.getElementById('apply-coupon-btn')) {
+        document.getElementById('apply-coupon-btn').addEventListener('click', () => {
+            const val = document.getElementById('coupon-input').value.trim().toUpperCase();
             const msg = document.getElementById('coupon-message');
-            if (codeInput.value.trim().toUpperCase() === 'URBANEMPIRE26') {
-                appliedDiscountRate = 0.10;
-                msg.textContent = '¡Código aplicado con éxito (-10%)!';
-                msg.style.color = '#16a34a';
-                renderCheckoutInvoice();
-            } else {
-                appliedDiscountRate = 0;
-                msg.textContent = 'Código inválido.';
-                msg.style.color = '#dc2626';
-                renderCheckoutInvoice();
-            }
+            if (val === 'URBANEMPIRE26') { appliedDiscountRate = 0.10; msg.textContent = '¡Aplicado (-10%)!'; msg.style.color = '#16a34a'; } 
+            else { appliedDiscountRate = 0; msg.textContent = 'Inválido.'; msg.style.color = '#dc2626'; }
+            renderCheckoutInvoice();
         });
     }
-    
+
     if (window.location.pathname.includes('producto.html')) {
-        const urlParams = new URLSearchParams(window.location.search);
-        let id = urlParams.get('id');
-        if (!id) id = 'green-shirt'; 
-        
+        const id = new URLSearchParams(window.location.search).get('id') || 'green-shirt'; 
         const prod = PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
-
         if (prod) {
-            const titleEl = document.getElementById('product-title');
+            if(document.getElementById('product-title')) document.getElementById('product-title').textContent = prod.name.toUpperCase();
+            if(document.getElementById('product-desc')) document.getElementById('product-desc').textContent = prod.desc;
+            if(document.getElementById('main-image')) document.getElementById('main-image').src = prod.image;
+            if(document.getElementById('product-details-list')) document.getElementById('product-details-list').innerHTML = prod.details.map(d => `<li>${d}</li>`).join('');
+            
             const priceEl = document.getElementById('product-price');
-            const descEl = document.getElementById('product-desc');
-            const imgEl = document.getElementById('main-image');
-            const listEl = document.getElementById('product-details-list');
+            if (priceEl && prod.isPromo) {
+                priceEl.innerHTML = `<span style="text-decoration: line-through; color: #a1a1aa; margin-right: 15px;">$${prod.price.toFixed(2)}</span><span style="color: #dc2626;">$${getFinalPrice(prod).toFixed(2)}</span>`;
+            } else if (priceEl) {
+                priceEl.textContent = `$${prod.price.toFixed(2)}`;
+            }
+
             const actionContainer = document.querySelector('.add-to-cart-row');
-
-            if (titleEl) titleEl.textContent = prod.name.toUpperCase();
-            if (priceEl) priceEl.textContent = `$${prod.price.toFixed(2)}`;
-            if (descEl) descEl.textContent = prod.desc;
-            
-            const galleryImages = prod.images || [prod.image, prod.image, prod.image];
-            if (imgEl) imgEl.src = galleryImages[0];
-            
-            const thumbContainer = document.querySelector('.thumbnails');
-            if (thumbContainer) {
-                thumbContainer.innerHTML = galleryImages.map((imgSrc, idx) => `
-                    <img class="thumb-img" src="${imgSrc}" alt="Ángulo ${idx + 1}" data-target="${imgSrc}">
-                `).join('');
-                
-                document.querySelectorAll('.thumb-img').forEach(thumb => {
-                    thumb.addEventListener('click', (e) => {
-                        imgEl.src = e.target.dataset.target;
-                    });
-                });
-            }
-
-            if (listEl && prod.details) {
-                listEl.innerHTML = prod.details.map(detail => `<li>${detail}</li>`).join('');
-            }
-            
             if (actionContainer) {
-                actionContainer.innerHTML = `
-                    <div class="quantity-control">
-                        <button type="button" id="qty-minus">−</button>
-                        <input type="text" id="qty-input" value="1" readonly>
-                        <button type="button" id="qty-plus">+</button>
-                    </div>
-                    <button type="button" class="olive-button" id="btn-add-cart-main" data-id="${prod.id}">AÑADIR AL CARRITO</button>
-                    <button class="btn-icon" id="btn-add-icon" aria-label="Añadir al carrito" data-id="${prod.id}">
-                        <svg viewBox="0 0 48 48" width="24" height="24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h6l4 24h23l5-17H14"/><circle cx="19" cy="40" r="3"/><circle cx="35" cy="40" r="3"/></svg>
-                    </button>
-                `;
-
-                let currentQty = 1;
-                document.getElementById('qty-minus').addEventListener('click', () => {
-                    if (currentQty > 1) {
-                        currentQty--;
-                        document.getElementById('qty-input').value = currentQty;
-                    }
-                });
-                document.getElementById('qty-plus').addEventListener('click', () => {
-                    currentQty++;
-                    document.getElementById('qty-input').value = currentQty;
-                });
-
-                const addToCartAction = () => {
+                actionContainer.innerHTML = `<button type="button" class="olive-button" onclick="window.location.href='hombres.html'">SEGUIR COMPRANDO</button><button class="btn-icon" id="btn-add-icon" data-id="${prod.id}"><svg viewBox="0 0 48 48" width="24" height="24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h6l4 24h23l5-17H14"/><circle cx="19" cy="40" r="3"/><circle cx="35" cy="40" r="3"/></svg></button>`;
+                document.getElementById('btn-add-icon').addEventListener('click', () => {
                     const items = cart(), found = items.find(i => i.id === prod.id);
-                    if (found) found.qty += currentQty; 
-                    else items.push({ id: prod.id, qty: currentQty });
+                    if (found) found.qty += 1; else items.push({ id: prod.id, qty: 1 });
                     saveCart(items);
-                    
                     const cartCount = document.querySelector('.cart-count');
                     if (cartCount) cartCount.textContent = items.reduce((a, p) => a + p.qty, 0);
                     
-                    const mainBtn = document.getElementById('btn-add-cart-main');
-                    mainBtn.textContent = '¡AÑADIDO!';
-                    setTimeout(() => { mainBtn.textContent = 'AÑADIR AL CARRITO'; }, 1200);
-                };
-
-                document.getElementById('btn-add-cart-main').addEventListener('click', addToCartAction);
-                document.getElementById('btn-add-icon').addEventListener('click', addToCartAction);
+                    const iconBtn = document.getElementById('btn-add-icon');
+                    const originalHTML = iconBtn.innerHTML;
+                    iconBtn.style.borderColor = '#16a34a';
+                    iconBtn.innerHTML = `<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+                    setTimeout(() => { iconBtn.style.borderColor = '#d4d4d0'; iconBtn.innerHTML = originalHTML; }, 1200);
+                });
             }
         }
     }
@@ -323,7 +217,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target.dataset.cart === 'remove') items.splice(items.indexOf(item), 1);
         saveCart(items);
         renderCart();
+        if (window.location.pathname.includes('factura.html')) renderCheckoutInvoice();
         const cartCount = document.querySelector('.cart-count');
         if (cartCount) cartCount.textContent = items.reduce((a, p) => a + p.qty, 0);
     });
-}); 
+});
+
+// ==========================================
+// NUEVO: PROTECCIÓN DEL BOTÓN DE PAGO
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const btnCheckout = document.getElementById('btn-checkout');
+    
+    if (btnCheckout) {
+        btnCheckout.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            const isLogged = localStorage.getItem('district_session');
+            
+            if (isLogged === 'active') {
+                window.location.href = 'factura.html'; 
+            } else {
+                alert('ACCESO DENEGADO: Debes iniciar sesión o registrarte para procesar tu pago.');
+                window.location.href = 'login.html';
+            }
+        });
+    }
+});

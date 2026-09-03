@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Factura y Feedback | District Urban Empire</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    /* ESTRUCTURA PRINCIPAL */
+    .checkout-container-minimal { 
+      display: flex; 
+      gap: 50px; 
+      padding: 60px 5%; 
+      max-width: 1300px; 
+      margin: 0 auto; 
+      align-items: flex-start;
+    }
+    @media (max-width: 900px) {
+      .checkout-container-minimal { flex-direction: column-reverse; }
+    }
+
+    /* COLUMNA IZQUIERDA: FACTURA OSCURA PREMIUM */
+    .invoice {
+      flex: 1;
+      width: 100%;
+      background: #0a0a0a; 
+      color: #fff;
+      border: 1px solid #222; 
+      padding: 40px; 
+      border-radius: 8px; 
+      position: sticky; 
+      top: 130px; 
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    }
+    .invoice h2 { font-family: 'Bebas Neue', sans-serif; font-size: 36px; margin: 0 0 20px; letter-spacing: 1px; color: #fff; }
+    .invoice h3 { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800; color: var(--gold); margin: 25px 0 15px; letter-spacing: 1px; }
+    .invoice p { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #ccc; margin: 0 0 8px; }
+    .invoice hr { border: 0; border-top: 1px dashed #333; margin: 20px 0; }
+
+    #invoice-items { margin-bottom: 20px; }
+    .invoice-item-row { display: flex; justify-content: space-between; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #ccc; margin-bottom: 12px; }
+
+    /* CUPÓN */
+    .coupon-section { display: flex; gap: 10px; margin-top: 15px; }
+    .coupon-section input { flex: 1; padding: 12px; background: #111; border: 1px solid #333; color: #fff; border-radius: 4px; outline: none; font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+    .coupon-section button { background: var(--gold); color: #000; border: none; padding: 0 20px; font-weight: 700; border-radius: 4px; cursor: pointer; transition: background 0.3s; }
+    .coupon-section button:hover { background: #a19d76; }
+
+    /* TOTALES */
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-family: 'Montserrat', sans-serif; font-size: 14px; color: #999; }
+    .summary-row:nth-child(2) { color: #16a34a; font-weight: 700; }
+    .total-row { display: flex; justify-content: space-between; margin-top: 25px; padding-top: 25px; border-top: 2px solid #333; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; color: var(--gold); }
+
+    /* COLUMNA DERECHA: FORMULARIO LIMPIO */
+    .checkout-box {
+      flex: 1.2;
+      width: 100%;
+      background: #fff;
+      padding: 45px;
+      border-radius: 8px;
+      border: 1px solid #eaeaea;
+    }
+    .checkout-box h2 { font-family: 'Bebas Neue', sans-serif; font-size: 38px; margin: 0 0 25px; letter-spacing: 1px; border-bottom: 2px solid #111; padding-bottom: 10px; }
+    #checkout-form { display: flex; flex-direction: column; gap: 20px; }
+    #checkout-form label { display: flex; flex-direction: column; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: #333; gap: 8px; }
+    #checkout-form input { padding: 15px; border: 1px solid #d4d4d0; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 14px; outline: none; transition: border 0.3s; width: 100%; box-sizing: border-box; }
+    #checkout-form input:focus { border-color: #111; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .checkout-box .olive-button { width: 100%; padding: 20px; font-size: 15px; margin-top: 10px; background: #111; border-radius: 4px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; border: none; cursor: pointer; transition: background 0.2s;}
+    .checkout-box .olive-button:hover { background: var(--olive); }
+
+    /* SECCIÓN DE FEEDBACK */
+    .feedback-minimal { max-width: 800px; margin: 0 auto 80px; background: #fff; padding: 50px; border-radius: 8px; border: 1px solid #eaeaea; text-align: center; }
+    .feedback-minimal h2 { font-family: 'Bebas Neue', sans-serif; font-size: 38px; margin: 0; letter-spacing: 1px; }
+    .feedback-sub { font-family: 'Montserrat', sans-serif; font-size: 15px; color: #666; margin-bottom: 40px; }
+    .feedback-minimal label { display: flex; flex-direction: column; text-align: left; font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: #111; margin-bottom: 25px; gap: 10px; }
+    .stars-minimal { font-size: 32px; color: #d4d4d0; margin-bottom: 30px; letter-spacing: 5px; cursor: pointer; transition: color 0.2s; }
+    .stars-minimal:hover { color: var(--gold); }
+    .feedback-minimal textarea { width: 100%; height: 100px; padding: 15px; border: 1px solid #d4d4d0; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 14px; outline: none; resize: vertical; box-sizing: border-box; }
+    .feedback-minimal textarea:focus { border-color: #111; }
+    .feedback-minimal .olive-button { width: 100%; padding: 18px; margin-top: 10px; border-radius: 4px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; border: none; cursor: pointer; background: #111;}
+    .feedback-minimal .olive-button:hover { background: var(--olive); }
+  </style>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <section class="page-banner">
+    <h1 style="display: none;">FACTURA Y FEEDBACK</h1>
+    <p style="display: none;" class="sub-portada">INICIO - CARRITO - CHECKOUT</p>
+  </section>
+
+  <main class="checkout-container-minimal">
+    
+    <!-- COLUMNA FACTURA -->
+    <aside class="invoice">
+      <h2>FACTURA</h2>
+      <h3>DATOS GENERALES</h3>
+      <p>Factura: #INV-2026-0842</p>
+      <p id="fecha-actual">Fecha: 3 de Septiembre de 2026</p>
+      <p>Cliente: Dilan Isaac Pérez Caillagua</p>
+      <hr>
+      
+      <h3>DETALLES DEL PEDIDO</h3>
+      <div id="invoice-items" class="invoice-items-list"></div>
+      <hr>
+      
+      <div class="coupon-section">
+        <input type="text" id="coupon-input" placeholder="CÓDIGO" autocomplete="off">
+        <button id="apply-coupon-btn" type="button">APLICAR</button>
+      </div>
+      <p id="coupon-message" style="font-size: 12px; margin-top: 8px; font-weight: 700;"></p>
+      <hr>
+
+      <h3>TOTALES</h3>
+      <div class="summary-row"><span>Subtotal:</span> <span id="invoice-subtotal">$0.00</span></div>
+      <div class="summary-row"><span>Descuento (<span id="discount-label">0%</span>):</span> <span id="invoice-discount">-$0.00</span></div>
+      <div class="summary-row"><span>Envío:</span> <span>$3.50</span></div>
+      <div class="summary-row"><span>Impuestos (15%):</span> <span id="invoice-tax">$0.00</span></div>
+      <div class="total-row"><span>TOTAL PAGADO:</span> <span id="invoice-total">$0.00</span></div>
+    </aside>
+
+    <!-- COLUMNA FORMULARIO -->
+    <section class="checkout-box">
+      <h2>DATOS DE PAGO</h2>
+      <form id="checkout-form" autocomplete="off">
+        <label>
+          Nombre completo
+          <input required type="text" autocomplete="off" name="field_user_fullname">
+        </label>
+        <label>
+          Correo electrónico
+          <input required type="email" autocomplete="off" name="field_user_mail">
+        </label>
+        <label>
+          Dirección de envío
+          <input required type="text" autocomplete="off" name="field_user_address">
+        </label>
+        <label>
+          Número de tarjeta
+          <input required inputmode="numeric" maxlength="12" minlength="12" pattern="\d{12}" title="Debe contener exactamente 12 dígitos numéricos" autocomplete="off" name="field_card_num">
+        </label>
+        <div class="form-row">
+          <label>
+            Vencimiento
+            <input required maxlength="5" autocomplete="off" name="field_card_exp">
+          </label>
+          <label>
+            CVV
+            <input required inputmode="numeric" maxlength="3" minlength="3" pattern="\d{3}" title="Debe contener exactamente 3 dígitos" autocomplete="off" name="field_card_cvv">
+          </label>
+        </div>
+        
+        <!-- Cambiado a type="submit" para que el navegador exija llenar los campos -->
+        <button class="olive-button" type="submit">CONFIRMAR PAGO</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- ENCUESTA -->
+  <section class="feedback-minimal">
+    <h2>ENCUESTA DE SATISFACCIÓN</h2>
+    <p class="feedback-sub">Tu opinión nos ayuda a perfeccionar la experiencia urbana.</p>
+    
+    <label style="text-align: center;">¿Cómo calificarías tu experiencia general en nuestra web?</label>
+    <div class="stars-minimal">★ ★ ★ ★ ★</div>
+    
+    <form id="feedback-form">
+      <label>
+        ¿Qué es lo que más te gustó de tu proceso de compra?
+        <textarea required></textarea>
+      </label>
+      <label>
+        ¿Tuviste algún problema o inconveniente durante el pago o envío?
+        <textarea></textarea>
+      </label>
+      <label>
+        Déjanos tus sugerencias para mejorar nuestros servicios
+        <textarea></textarea>
+      </label>
+      <button class="olive-button" type="button" onclick="alert('¡Gracias por tu feedback!')">ENVIAR OPINIÓN</button>
+    </form>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="script.js"></script>
+
+  <!-- ESTE SCRIPT HACE LA MAGIA DE LA REDIRECCIÓN SOLO SI EL FORMULARIO ESTÁ LLENO -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('checkout-form');
+      
+      form.addEventListener('submit', function(event) {
+        // Evita que la página se recargue (comportamiento por defecto)
+        event.preventDefault(); 
+        
+        // Redirige a la página de éxito
+        window.location.href = 'exito.html'; 
+      });
+    });
+  </script>
+</body>
+</html>

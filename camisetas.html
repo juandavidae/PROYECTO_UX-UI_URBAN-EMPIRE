@@ -56,7 +56,12 @@
     <section class="catalog-content">
       <div class="catalog-header">
         <div class="view-icons"></div>
-        <select class="sort-by"><option>Ordenar por: Destacados</option></select>
+        <!-- AQUÍ ESTÁN LAS OPCIONES DE ORDENAMIENTO -->
+        <select class="sort-by" id="sort-select">
+          <option value="default">Ordenar por: Destacados</option>
+          <option value="price-asc">Precio: Menor a Mayor</option>
+          <option value="price-desc">Precio: Mayor a Menor</option>
+        </select>
       </div>
       <!-- Llamamos al filtro de camisetas -->
       <div class="product-grid" data-products="shirts"></div>
