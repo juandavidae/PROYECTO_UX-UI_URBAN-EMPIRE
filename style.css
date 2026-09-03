@@ -1,4 +1,3 @@
-/* style.css */
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap');
 
 :root {
@@ -52,7 +51,7 @@ button, select, input, textarea { font: inherit; }
 .actions a { display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; }
 .actions a svg { pointer-events: none; }
 
-/* HERO & BANNERS */
+/* HERO */
 .hero {
   height: 480px;
   display: flex;
@@ -75,10 +74,10 @@ button, select, input, textarea { font: inherit; }
 }
 .olive-button:hover { background: #86866b; transform: translateY(-2px); }
 
-/* PAGE BANNER CORREGIDO (NÍTIDO Y SIN SUPERPOSICIONES) */
+/* PAGE BANNER - AJUSTE EXACTO A TU IMAGEN */
 .page-banner {
   width: 100%; 
-  height: 220px; 
+  height: 160px; /* Menos alto */
   display: flex; 
   flex-direction: column; 
   justify-content: center; 
@@ -92,23 +91,42 @@ button, select, input, textarea { font: inherit; }
 .page-banner .banner-image {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  left: auto;
+  width: 55%; /* La imagen solo cubre la mitad derecha */
   height: 100%;
   object-fit: cover;
-  opacity: 1;
+  object-position: top;
+  opacity: 0.9;
   z-index: 1;
+  /* Efecto difuminado para que se mezcle con el fondo negro hacia la izquierda */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%);
+  mask-image: linear-gradient(to right, transparent 0%, black 50%);
 }
 
 .page-banner h1, 
 .page-banner .sub-portada, 
 .page-banner p {
   position: relative;
-  z-index: 2;
+  z-index: 2; /* Para que el texto siempre se vea por encima de la foto */
 }
 
-.page-banner h1 { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: #fff; margin: 0; line-height: 0.9; }
-.page-banner .sub-portada { font-family: 'Oswald', sans-serif; font-size: 14px; color: var(--gold); margin-top: 8px; letter-spacing: 2px; font-weight: 700; }
+.page-banner h1 { 
+  font-family: 'Bebas Neue', sans-serif; 
+  font-size: 56px; 
+  color: #fff; 
+  margin: 0; 
+  line-height: 1; 
+  letter-spacing: 1px;
+}
+.page-banner .sub-portada { 
+  font-family: 'Montserrat', sans-serif; 
+  font-size: 11px; 
+  color: #fff; 
+  margin-top: 6px; 
+  letter-spacing: 1px; 
+  font-weight: 600; 
+}
 
 /* BENEFITS & SECTIONS */
 .benefits {
@@ -132,14 +150,21 @@ button, select, input, textarea { font: inherit; }
 .category-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin: 20px 0; }
 .category-card { background: var(--card); border-radius: 7px; overflow: hidden; transition: transform 0.3s ease; }
 .category-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); }
-.category-card img { display: block; width: 100%; height: 260px; object-fit: contain; padding: 15px; background: var(--card); }
+
+.category-card img { 
+  display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; padding: 0; background: var(--card); 
+}
 .category-card b { display: block; text-align: center; padding: 15px 12px; font: 700 18px Oswald, sans-serif; background: #fff; }
 
-.product-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; padding: 10px 0; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; padding: 10px 0; }
 
-.product-card { background: var(--card); border-radius: 5px; overflow: hidden; position: relative; transition: transform 0.3s ease; }
+.product-card { background: var(--card); border-radius: 5px; overflow: hidden; position: relative; transition: transform 0.3s ease; border: 1px solid #e2e2e2; }
 .product-card:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1); }
-.product-card img { display: block; width: 100%; height: 220px; object-fit: contain; padding: 15px; background: var(--card); }
+
+.product-card img { 
+  display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; padding: 0; background: var(--card); 
+}
+
 .product-card .heart { position: absolute; top: 12px; right: 12px; font-size: 18px; color: #333; cursor: pointer; }
 .product-card .card-copy { padding: 12px 10px; font: 14px Oswald, sans-serif; color: #444; background: #fff; }
 .product-card .card-copy strong { display: block; font-size: 15px; margin-bottom: 3px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Montserrat', sans-serif; font-weight: 700; }
@@ -177,7 +202,7 @@ button, select, input, textarea { font: inherit; }
 .swatches i:nth-child(8) { background: #FF5500; }
 .swatches i:nth-child(9) { background: #660000; }
 
-/* CONTROLES DE AÑADIR AL CARRITO (ALINEACIÓN DE 50PX Y VERDE OSCURO) */
+/* CONTROLES DE AÑADIR AL CARRITO */
 .add-to-cart-row { display: flex; gap: 15px; align-items: center; margin-top: 25px; }
 
 .quantity-control {
@@ -203,7 +228,6 @@ button, select, input, textarea { font: inherit; }
 .title-with-lines::before, .title-with-lines::after { content: ''; flex: 1; border-bottom: 2px solid #eaeaea; }
 .title-with-lines h2 { margin: 0 30px; font-family: 'Oswald', sans-serif; font-size: 22px; color: #111; letter-spacing: 1px; }
 
-/* CUADRÍCULA DE RECOMENDACIONES (4 COLUMNAS) */
 .related-products-section .product-grid { 
   grid-template-columns: repeat(4, 1fr); 
   gap: 20px; 

@@ -3,23 +3,90 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Catálogo Hombre | District.</title>
+  <title>Hombre | District Urban Empire</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estructura exacta del catálogo de la imagen */
+    .catalog-page {
+      display: flex;
+      gap: 30px;
+      padding: 40px 4%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .catalog-sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      border-right: 1px solid #dcdcdc; /* Línea gris divisoria */
+      padding-right: 25px;
+    }
+    
+    .catalog-sidebar h3 {
+      font-family: 'Bebas Neue', Oswald, sans-serif;
+      font-size: 26px;
+      margin: 30px 0 15px;
+      text-transform: uppercase;
+      border-bottom: 2px solid #111; /* Línea negra gruesa */
+      padding-bottom: 5px;
+      letter-spacing: 1px;
+      color: #111;
+    }
+    .catalog-sidebar h3:first-child { margin-top: 0; }
+    
+    .catalog-sidebar ul { list-style: none; padding: 0; margin: 0; }
+    .catalog-sidebar li {
+      margin-bottom: 12px; font-size: 14px; color: #333; cursor: pointer; font-weight: 500; transition: color 0.2s;
+    }
+    .catalog-sidebar li:hover { color: #000; font-weight: 700; }
+    
+    .catalog-sidebar h4 {
+      font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800; margin: 25px 0 15px; color: #000; text-transform: uppercase;
+    }
+    
+    .catalog-sidebar label {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 13px; color: #333; cursor: pointer; font-weight: 500;
+    }
+    .catalog-sidebar label input { width: 16px; height: 16px; margin: 0; cursor: pointer; }
+    
+    .sidebar-colors { display: flex; flex-wrap: wrap; gap: 10px; }
+    .sidebar-colors i {
+      display: block; width: 22px; height: 22px; border-radius: 50%; cursor: pointer; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15); transition: transform 0.2s;
+    }
+    .sidebar-colors i:hover { transform: scale(1.1); }
+    
+    .catalog-content { flex: 1; }
+    
+    .catalog-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
+    }
+    .view-icons { display: flex; gap: 10px; align-items: center; }
+    .view-icons svg { width: 24px; height: 24px; fill: none; stroke: #555; stroke-width: 1.5; cursor: pointer; }
+    
+    .sort-by {
+      padding: 8px 15px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 13px; background: #fff; outline: none; width: 200px;
+    }
+
+    /* Forzar 4 columnas en el catálogo interno */
+    .catalog-content .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+  </style>
 </head>
 <body>
   <div id="site-header"></div>
-  
-  <section class="portada-unica-catalogo">
-    <h1 class="titulo-portada">HOMBRE</h1>
+
+  <!-- TEXTOS VISIBLES -->
+  <section class="page-banner">
+    <h1>HOMBRE</h1>
     <p class="sub-portada">INICIO - HOMBRE</p>
   </section>
 
-  <!-- Contenedor general en dos columnas -->
-  <div class="catalog-layout">
-    
-    <!-- Menú lateral izquierdo idéntico a tu diseño -->
-    <aside class="filters">
-      <h2>CATEGORÍAS</h2>
+  <main class="catalog-page">
+    <aside class="catalog-sidebar">
+      <h3>CATEGORIAS</h3>
       <ul>
         <li>Accesorios</li>
         <li>Calzado</li>
@@ -28,52 +95,40 @@
         <li>Chaquetas</li>
         <li>Gafas</li>
         <li>Pantalones</li>
-        <li>Hoddies</li>
+        <li>Hoodies</li>
         <li>Bermudas</li>
       </ul>
-      
-      <h2 style="margin-top: 35px;">FILTRAR POR</h2>
-      
-      <h3>TALLA</h3>
-      <ul>
-        <li><label style="cursor: pointer;"><input type="checkbox"> S</label></li>
-        <li><label style="cursor: pointer;"><input type="checkbox"> M</label></li>
-        <li><label style="cursor: pointer;"><input type="checkbox"> L</label></li>
-        <li><label style="cursor: pointer;"><input type="checkbox"> XL</label></li>
-        <li><label style="cursor: pointer;"><input type="checkbox"> XXL</label></li>
-      </ul>
 
-      <h3 style="margin-top: 25px;">COLOR</h3>
-      <div class="swatches">
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
+      <h3>FILTRAR POR</h3>
+      <h4>TALLA</h4>
+      <label><input type="checkbox"> S</label>
+      <label><input type="checkbox"> M</label>
+      <label><input type="checkbox"> L</label>
+      <label><input type="checkbox"> XL</label>
+      <label><input type="checkbox"> XXL</label>
+
+      <h4>COLOR</h4>
+      <div class="sidebar-colors">
+        <i style="background: #4A3B32;"></i>
+        <i style="background: #6B2D31;"></i>
+        <i style="background: #000000;"></i>
+        <i style="background: #464B35;"></i>
+        <i style="background: #3B4B42;"></i>
+        <i style="background: #224488;"></i>
+        <i style="background: #D5B895;"></i>
+        <i style="background: #FF5500;"></i>
+        <i style="background: #660000;"></i>
       </div>
     </aside>
-    
-    <!-- Zona derecha: Herramientas y productos -->
-    <main class="catalog">
-      <div class="catalog-toolbar">
-        <div class="view-icons"></div>
-        <select>
-          <option>Ordenar por</option>
-          <option>Precio: Menor a Mayor</option>
-          <option>Precio: Mayor a Menor</option>
-          <option>Más recientes</option>
-        </select>
-      </div>
-      
-      <!-- Cuadrícula donde tu JavaScript inyecta los productos -->
-      <div class="product-grid" data-products="men"></div>
-    </main>
 
-  </div>
+    <section class="catalog-content">
+      <div class="catalog-header">
+        <div class="view-icons"></div>
+        <select class="sort-by"><option></option></select>
+      </div>
+      <div class="product-grid" data-products="men"></div>
+    </section>
+  </main>
 
   <div id="site-footer"></div>
   <script src="script.js"></script>

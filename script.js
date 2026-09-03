@@ -23,8 +23,8 @@ function renderViewIcons() {
 const PRODUCTS = [
     { 
         id: 'green-shirt', name: 'Camiseta Oversize Verde', price: 25, 
-        image: 'https://www.figma.com/api/mcp/asset/467874e9-3bec-4ca2-ab7d-57b7b1424498.png', 
-        images: ['https://www.figma.com/api/mcp/asset/467874e9-3bec-4ca2-ab7d-57b7b1424498.png', 'https://www.figma.com/api/mcp/asset/e42c0d7a-1e4d-447d-b828-ed0df0ee39a8.png', 'https://www.figma.com/api/mcp/asset/33ac37b8-2c54-462e-80c9-a2292ee8e294.png'],
+        image: 'https://www.figma.com/api/mcp/asset/a70e1db1-6f28-4007-93dd-0f3ea78c0d34.png', 
+        images: ['https://www.figma.com/api/mcp/asset/a70e1db1-6f28-4007-93dd-0f3ea78c0d34.png', 'https://www.figma.com/api/mcp/asset/e42c0d7a-1e4d-447d-b828-ed0df0ee39a8.png', 'https://www.figma.com/api/mcp/asset/33ac37b8-2c54-462e-80c9-a2292ee8e294.png'],
         desc: 'Camiseta relajada de algodón premium con fit oversize. Perfecta para un look urbano y cómodo.', 
         details: ['<strong>Color:</strong> Verde lavado', '<strong>Tela:</strong> 100% algodón premium', '<strong>Gramaje:</strong> 240 GSM', '<strong>Corte:</strong> Oversize', '<strong>Cuello:</strong> Redondo y acanalado', '<strong>Estampado:</strong> Serigrafía frontal y trasera', '<strong>Hecho en Ecuador</strong>'] 
     },
@@ -121,7 +121,7 @@ function renderProducts() {
     document.querySelectorAll('[data-products]').forEach(container => {
         let list = PRODUCTS;
         if (container.dataset.products === 'men') list = [...PRODUCTS, ...PRODUCTS, ...PRODUCTS];
-        if (container.dataset.products === 'new') list = PRODUCTS;
+        if (container.dataset.products === 'new') list = PRODUCTS.filter(product => product.id !== 'green-shirt');
         if (container.dataset.products === 'recommendations') {
             const sampleItem = PRODUCTS.find(x => x.id === 'wide-leg') || PRODUCTS[0];
             list = Array(8).fill(sampleItem);
