@@ -18,6 +18,13 @@ function renderViewIcons() {
 
 const PRODUCTS = [
     { 
+        id: 'green-shirt', name: 'Camiseta Oversize Verde', price: 25, 
+        image: 'https://www.figma.com/api/mcp/asset/467874e9-3bec-4ca2-ab7d-57b7b1424498.png', 
+        images: ['https://www.figma.com/api/mcp/asset/467874e9-3bec-4ca2-ab7d-57b7b1424498.png', 'https://www.figma.com/api/mcp/asset/e42c0d7a-1e4d-447d-b828-ed0df0ee39a8.png', 'https://www.figma.com/api/mcp/asset/33ac37b8-2c54-462e-80c9-a2292ee8e294.png'],
+        desc: 'Camiseta relajada de algodón premium con fit oversize. Perfecta para un look urbano y cómodo.', 
+        details: ['<strong>Color:</strong> Verde lavado', '<strong>Tela:</strong> 100% algodón premium', '<strong>Gramaje:</strong> 240 GSM', '<strong>Corte:</strong> Oversize', '<strong>Cuello:</strong> Redondo y acanalado', '<strong>Estampado:</strong> Serigrafía frontal y trasera', '<strong>Hecho en Ecuador</strong>'] 
+    },
+    { 
         id: 'windbreaker', name: 'Nike Windbreaker', price: 50, 
         image: 'https://www.figma.com/api/mcp/asset/c2ca3ee9-5835-41f2-8172-62e8388ed45e.png', 
         images: ['https://www.figma.com/api/mcp/asset/c2ca3ee9-5835-41f2-8172-62e8388ed45e.png', 'https://www.figma.com/api/mcp/asset/5f277386-f194-4230-8ed0-dde52b477b0f.png', 'https://www.figma.com/api/mcp/asset/3165740d-cf78-4275-8f8f-5df54e3ff880.png'],
@@ -104,13 +111,17 @@ function footer() {
 function cart() { return JSON.parse(localStorage.getItem('district-cart') || '[]') }
 function saveCart(value) { localStorage.setItem('district-cart', JSON.stringify(value)) }
 
-function productCard(p) { return `<article class="product-card"><a href="producto.html?id=${p.id}"><img src="${p.image}" alt="${p.name}"></a><div class="card-copy"><strong>${p.name}</strong><span>$ ${p.price.toFixed(2)}</span></div></article>` }
+function productCard(p) { return `<article class="product-card"><a href="producto.html?id=${p.id}"><img src="${p.image}" alt="${p.name}"></a><span class="heart">♡</span><div class="card-copy"><strong>${p.name}</strong><span>$ ${p.price.toFixed(2)}</span></div></article>` }
 
 function renderProducts() {
     document.querySelectorAll('[data-products]').forEach(container => {
         let list = PRODUCTS;
         if (container.dataset.products === 'men') list = [...PRODUCTS, ...PRODUCTS, ...PRODUCTS];
         if (container.dataset.products === 'new') list = PRODUCTS;
+        if (container.dataset.products === 'recommendations') {
+            const sampleItem = PRODUCTS.find(x => x.id === 'wide-leg') || PRODUCTS[0];
+            list = Array(8).fill(sampleItem);
+        }
         container.innerHTML = list.map(productCard).join('')
     })
 }
@@ -205,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.includes('producto.html')) {
         const urlParams = new URLSearchParams(window.location.search);
         let id = urlParams.get('id');
-        if (!id) id = 'windbreaker'; 
+        if (!id) id = 'green-shirt'; 
         
         const prod = PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
 
@@ -248,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <input type="text" id="qty-input" value="1" readonly>
                         <button type="button" id="qty-plus">+</button>
                     </div>
-                    <a href="hombres.html" class="olive-button" style="flex: 1; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center;">SEGUIR COMPRANDO</a>
+                    <button type="button" class="olive-button" id="btn-add-cart-main" data-id="${prod.id}">AÑADIR AL CARRITO</button>
                     <button class="btn-icon" id="btn-add-icon" aria-label="Añadir al carrito" data-id="${prod.id}">
                         <svg viewBox="0 0 48 48" width="24" height="24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h6l4 24h23l5-17H14"/><circle cx="19" cy="40" r="3"/><circle cx="35" cy="40" r="3"/></svg>
                     </button>
@@ -266,7 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('qty-input').value = currentQty;
                 });
 
-                document.getElementById('btn-add-icon').addEventListener('click', () => {
+                const addToCartAction = () => {
                     const items = cart(), found = items.find(i => i.id === prod.id);
                     if (found) found.qty += currentQty; 
                     else items.push({ id: prod.id, qty: currentQty });
@@ -275,10 +286,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cartCount = document.querySelector('.cart-count');
                     if (cartCount) cartCount.textContent = items.reduce((a, p) => a + p.qty, 0);
                     
-                    const iconBtn = document.getElementById('btn-add-icon');
-                    iconBtn.style.background = '#737359';
-                    setTimeout(() => { iconBtn.style.background = '#fff'; }, 1000);
-                });
+                    const mainBtn = document.getElementById('btn-add-cart-main');
+                    mainBtn.textContent = '¡AÑADIDO!';
+                    setTimeout(() => { mainBtn.textContent = 'AÑADIR AL CARRITO'; }, 1200);
+                };
+
+                document.getElementById('btn-add-cart-main').addEventListener('click', addToCartAction);
+                document.getElementById('btn-add-icon').addEventListener('click', addToCartAction);
             }
         }
     }
