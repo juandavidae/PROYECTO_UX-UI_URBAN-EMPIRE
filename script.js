@@ -3,8 +3,12 @@ function renderInternalBannerImage() {
         if (banner.querySelector('.banner-image')) return;
         const image = document.createElement('img');
         image.className = 'banner-image';
-        const title = banner.querySelector('h1')?.textContent.trim();
-        image.src = title === 'HOMBRE' ? 'https://www.figma.com/api/mcp/asset/3d2a7fdd-cada-4bcd-9894-427d1153ced1.png' : title === 'CAMISETAS OVERSIZE' ? 'https://www.figma.com/api/mcp/asset/03effb12-800c-4a61-b912-5f9be3c3e726.png' : title === 'FACTURA Y FEEDBACK' || title === 'CARRITO DE COMPRAS' ? 'https://www.figma.com/api/mcp/asset/41720044-0188-4125-ab88-5fa31352a6ab.png' : 'https://www.figma.com/api/mcp/asset/3669a830-29c9-4559-8289-fa7973ccbbb7.png';
+        
+        // Evita que el código colapse si no encuentra el h1
+        const h1 = banner.querySelector('h1');
+        const title = h1 ? h1.textContent.trim() : 'CAMISETAS OVERSIZE';
+        
+        image.src = title === 'HOMBRE' ? 'https://www.figma.com/api/mcp/asset/3d2a7fdd-cada-4bcd-9894-427d1153ced1.png' : title === 'CAMISETAS OVERSIZE' ? 'https://www.figma.com/api/mcp/asset/03effb12-800c-4a61-b912-5f9be3c3e726.png' : title === 'FACTURA Y FEEDBACK' || title === 'CARRITO DE COMPRAS' ? 'https://www.figma.com/api/mcp/asset/41720044-0188-4125-ab88-5fa31352a6ab.png' : 'https://www.figma.com/api/mcp/asset/03effb12-800c-4a61-b912-5f9be3c3e726.png';
         image.alt = '';
         banner.prepend(image)
     })
