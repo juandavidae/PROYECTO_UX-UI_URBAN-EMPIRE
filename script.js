@@ -104,8 +104,7 @@ function footer() {
 function cart() { return JSON.parse(localStorage.getItem('district-cart') || '[]') }
 function saveCart(value) { localStorage.setItem('district-cart', JSON.stringify(value)) }
 
-// Incluye el icono de corazón en la tarjeta de nuevos lanzamientos tal como se ve en la captura
-function productCard(p) { return `<article class="product-card"><a href="producto.html?id=${p.id}"><img src="${p.image}" alt="${p.name}"></a><span class="heart">♡</span><div class="card-copy"><strong>${p.name}</strong><span>$ ${p.price.toFixed(2)}</span></div></article>` }
+function productCard(p) { return `<article class="product-card"><a href="producto.html?id=${p.id}"><img src="${p.image}" alt="${p.name}"></a><div class="card-copy"><strong>${p.name}</strong><span>$ ${p.price.toFixed(2)}</span></div></article>` }
 
 function renderProducts() {
     document.querySelectorAll('[data-products]').forEach(container => {
