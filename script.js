@@ -23,8 +23,8 @@ function renderViewIcons() {
 const PRODUCTS = [
     { 
         id: 'green-shirt', name: 'Camiseta Oversize Verde', price: 25, 
-        image: 'assets/camiseta-verde.svg', 
-        images: ['assets/camiseta-verde.svg', 'https://www.figma.com/api/mcp/asset/e42c0d7a-1e4d-447d-b828-ed0df0ee39a8.png', 'https://www.figma.com/api/mcp/asset/33ac37b8-2c54-462e-80c9-a2292ee8e294.png'],
+        image: 'assets/camiseta-verde-grafica.svg', 
+        images: ['assets/camiseta-verde-grafica.svg', 'assets/camiseta-verde.svg', 'https://www.figma.com/api/mcp/asset/e42c0d7a-1e4d-447d-b828-ed0df0ee39a8.png'],
         desc: 'Camiseta relajada de algodón premium con fit oversize. Perfecta para un look urbano y cómodo.', 
         details: ['<strong>Color:</strong> Verde lavado', '<strong>Tela:</strong> 100% algodón premium', '<strong>Gramaje:</strong> 240 GSM', '<strong>Corte:</strong> Oversize', '<strong>Cuello:</strong> Redondo y acanalado', '<strong>Estampado:</strong> Serigrafía frontal y trasera', '<strong>Hecho en Ecuador</strong>'] 
     },
@@ -42,6 +42,16 @@ const PRODUCTS = [
         desc: 'Polo de corte urbano moderno con detalles en contraste sutiles. Confeccionada en tejido grueso de alta calidad para un porte impecable.', 
         details: ['<strong>Color:</strong> Marrón tierra', '<strong>Tela:</strong> 100% algodón de alto gramaje', '<strong>Corte:</strong> Oversize contemporáneo', '<strong>Hecho en Ecuador</strong>'] 
     },
+    { id: 'black-red-shirt', name: 'Camiseta Oversize Negra Roja', price: 20, image: 'assets/camiseta-negra-roja.svg', images: ['assets/camiseta-negra-roja.svg'], desc: 'Camiseta oversize de algodón con gráfico urbano en contraste.', details: ['<strong>Color:</strong> Negro', '<strong>Corte:</strong> Oversize'] },
+    { id: 'black-white-red-shirt', name: 'Camiseta Oversize Negra Blanca', price: 20, image: 'assets/camiseta-negra-blanca-roja.svg', images: ['assets/camiseta-negra-blanca-roja.svg'], desc: 'Camiseta oversize con estampado gráfico de inspiración urbana.', details: ['<strong>Color:</strong> Negro', '<strong>Corte:</strong> Oversize'] },
+    { id: 'black-blue-shirt', name: 'Camiseta Oversize Negra Azul', price: 20, image: 'assets/camiseta-negra-azul.svg', images: ['assets/camiseta-negra-azul.svg'], desc: 'Camiseta oversize negra con gráfico azul de gran formato.', details: ['<strong>Color:</strong> Negro', '<strong>Corte:</strong> Oversize'] },
+    { id: 'gray-logo-shirt', name: 'Camiseta Oversize Gris Logo', price: 20, image: 'assets/camiseta-gris-logo.svg', images: ['assets/camiseta-gris-logo.svg'], desc: 'Camiseta oversize gris con detalle de logo minimalista.', details: ['<strong>Color:</strong> Gris', '<strong>Corte:</strong> Oversize'] },
+    { id: 'burgundy-shirt', name: 'Camiseta Oversize Vino', price: 20, image: 'assets/camiseta-vino-grafica.svg', images: ['assets/camiseta-vino-grafica.svg'], desc: 'Camiseta oversize color vino con estampado frontal.', details: ['<strong>Color:</strong> Vino', '<strong>Corte:</strong> Oversize'] },
+    { id: 'charcoal-shirt', name: 'Camiseta Oversize Carbón', price: 20, image: 'assets/camiseta-gris-oscura.svg', images: ['assets/camiseta-gris-oscura.svg'], desc: 'Camiseta oversize carbón con detalles gráficos sutiles.', details: ['<strong>Color:</strong> Carbón', '<strong>Corte:</strong> Oversize'] },
+    { id: 'black-graphic-shirt', name: 'Camiseta Oversize Negra Gráfica', price: 20, image: 'assets/camiseta-negra-blanca.svg', images: ['assets/camiseta-negra-blanca.svg'], desc: 'Camiseta oversize negra con estampado tipográfico frontal.', details: ['<strong>Color:</strong> Negro', '<strong>Corte:</strong> Oversize'] },
+    { id: 'black-figure-shirt', name: 'Camiseta Oversize Negra Figura', price: 20, image: 'assets/camiseta-negra-figura.svg', images: ['assets/camiseta-negra-figura.svg'], desc: 'Camiseta oversize negra con ilustración central.', details: ['<strong>Color:</strong> Negro', '<strong>Corte:</strong> Oversize'] },
+    { id: 'gray-shirt', name: 'Camiseta Oversize Gris', price: 20, image: 'assets/camiseta-gris-clara.svg', images: ['assets/camiseta-gris-clara.svg'], desc: 'Camiseta oversize gris de estética minimalista.', details: ['<strong>Color:</strong> Gris claro', '<strong>Corte:</strong> Oversize'] },
+    { id: 'white-shirt', name: 'Camiseta Oversize Blanca', price: 20, image: 'assets/camiseta-blanca.svg', images: ['assets/camiseta-blanca.svg'], desc: 'Camiseta oversize blanca con detalles gráficos en contraste.', details: ['<strong>Color:</strong> Blanco', '<strong>Corte:</strong> Oversize'] },
     { 
         id: 'shorts', name: 'Bermuda de Felpa', price: 20, 
         image: 'https://www.figma.com/api/mcp/asset/1b375efe-0fee-4507-8f22-a5ebc0d835ea.png', 
