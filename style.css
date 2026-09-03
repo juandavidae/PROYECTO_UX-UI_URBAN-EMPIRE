@@ -48,9 +48,22 @@ button, select, input, textarea { font: inherit; }
 .actions { display: flex; align-items: center; gap: 18px; }
 .actions button { width: 38px; height: 38px; padding: 0; border: 0; background: transparent; display: grid; place-items: center; cursor: pointer; }
 .actions svg { width: 38px; height: 38px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+.actions button:hover svg, .actions button[aria-expanded="true"] svg { stroke: var(--gold); }
 .actions a { display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; }
 .actions a svg { pointer-events: none; }
 .menu-toggle { display: none; }
+.site-search { position: absolute; top: calc(100% + 14px); right: 4%; width: min(390px, 90vw); padding: 18px; background: #151616; border: 1px solid #575944; box-shadow: 0 14px 35px rgba(0,0,0,.4); display: none; }
+.site-search.is-open { display: block; }
+.site-search label { display: block; color: var(--gold); font-size: 10px; font-weight: 700; letter-spacing: 1.6px; margin-bottom: 9px; }
+.site-search input { width: 100%; padding: 12px 13px; border: 1px solid #777; border-radius: 2px; background: #f5f5f5; color: #111; outline: 0; font-size: 13px; }
+.site-search input::placeholder { color: #777; }
+.site-search input:focus { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(187,183,139,.18); }
+.search-results { max-height: 245px; overflow-y: auto; margin-top: 9px; }
+.search-results a, .search-results p { display: flex; justify-content: space-between; gap: 12px; padding: 12px 3px; margin: 0; color: #fff; font-size: 12px; border-top: 1px solid #303230; }
+.search-results a:hover { color: var(--gold); padding-left: 6px; }
+.search-results a span { color: var(--gold); white-space: nowrap; }
+.search-results p { color: #bbb; }
+.search-empty { grid-column: 1 / -1; text-align: center; padding: 30px; }
 
 /* HERO */
 .hero {
@@ -353,6 +366,7 @@ button, select, input, textarea { font: inherit; }
   .site-header nav a { flex: 0 0 auto; padding: 11px 4px; font-size: 12px; letter-spacing: 1px; border-bottom: 1px solid #292929; }
   .actions { gap: 8px; }
   .actions button, .actions svg { width: 30px; height: 30px; }
+  .site-search { top: calc(100% + 8px); right: 5%; width: 90vw; max-width: none; padding: 14px; }
 
   .hero { min-height: 420px; height: 70vh; background-position: 58% center; }
   .hero-copy { padding: 0 7%; }

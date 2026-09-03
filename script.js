@@ -59,10 +59,15 @@ function header() {
             <a href="servicios.html">SERVICIOS</a>
         </nav>
         <div class="actions">
-            <button aria-label="Buscar"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="11"/><path d="M28 28l10 10"/></svg></button>
+            <button class="search-toggle" type="button" aria-label="Buscar" aria-expanded="false" aria-controls="site-search"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="20" cy="20" r="11"/><path d="M28 28l10 10"/></svg></button>
             <a aria-label="Mi cuenta" href="login.html"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M10 41c0-8 5.7-13 14-13s14 5 14 13"/></svg></a>
             <a aria-label="Carrito" href="carrito.html"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 8h6l4 24h23l5-17H14"/><circle cx="19" cy="40" r="2.5"/><circle cx="35" cy="40" r="2.5"/></svg><span class="cart-count">${cart().reduce((a, p) => a + p.qty, 0)}</span></a>
         </div>
+        <form class="site-search" id="site-search" role="search" action="hombres.html" method="get">
+            <label for="site-search-input">Buscar productos</label>
+            <input id="site-search-input" name="search" type="search" placeholder="Buscar productos..." autocomplete="off">
+            <div class="search-results" aria-live="polite"></div>
+        </form>
         <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-navigation"><span></span><span></span><span></span></button>
     </header>`;
 }
@@ -100,6 +105,7 @@ function productCard(p) {
 function renderProducts() {
     const sortSelect = document.querySelector('.sort-by');
     const sortValue = sortSelect ? sortSelect.value : 'default';
+    const search = new URLSearchParams(window.location.search).get('search')?.trim().toLowerCase() || '';
 
     document.querySelectorAll('[data-products]').forEach(container => {
         let list = [...PRODUCTS];
@@ -108,11 +114,39 @@ function renderProducts() {
         if (container.dataset.products === 'shirts') list = PRODUCTS.filter(p => p.name.includes('Camiseta') || p.name.includes('Polo'));
         if (container.dataset.products === 'promos') list = PRODUCTS.filter(p => p.isPromo);
         if (container.dataset.products === 'recommendations') list = PRODUCTS.slice(0, 4);
+        if (search) list = list.filter(p => p.name.toLowerCase().includes(search));
 
         if (sortValue === 'price-asc') list.sort((a, b) => getFinalPrice(a) - getFinalPrice(b));
         else if (sortValue === 'price-desc') list.sort((a, b) => getFinalPrice(b) - getFinalPrice(a));
 
-        container.innerHTML = list.map(p => productCard(p)).join('');
+        container.innerHTML = list.length ? list.map(p => productCard(p)).join('') : '<p class="search-empty">No encontramos productos con esa búsqueda.</p>';
+    });
+}
+
+function setupSearch() {
+    const toggle = document.querySelector('.search-toggle');
+    const form = document.querySelector('#site-search');
+    const input = document.querySelector('#site-search-input');
+    const results = document.querySelector('.search-results');
+    if (!toggle || !form || !input || !results) return;
+
+    const updateResults = () => {
+        const value = input.value.trim().toLowerCase();
+        const matches = value ? PRODUCTS.filter(p => p.name.toLowerCase().includes(value)).slice(0, 5) : [];
+        results.innerHTML = matches.map(p => `<a href="producto.html?id=${p.id}">${p.name}<span>$${getFinalPrice(p).toFixed(2)}</span></a>`).join('') || (value ? '<p>No hay coincidencias.</p>' : '');
+    };
+
+    toggle.addEventListener('click', () => {
+        const isOpen = form.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        if (isOpen) input.focus();
+    });
+    input.addEventListener('input', updateResults);
+    document.addEventListener('click', event => {
+        if (!form.contains(event.target) && !toggle.contains(event.target)) {
+            form.classList.remove('is-open');
+            toggle.setAttribute('aria-expanded', 'false');
+        }
     });
 }
 
@@ -157,6 +191,7 @@ function renderCheckoutInvoice() {
 document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('#site-header')) document.querySelector('#site-header').innerHTML = header();
     if (document.querySelector('#site-footer')) document.querySelector('#site-footer').innerHTML = footer();
+    setupSearch();
 
     const menuToggle = document.querySelector('.menu-toggle');
     const mainNavigation = document.querySelector('#main-navigation');
