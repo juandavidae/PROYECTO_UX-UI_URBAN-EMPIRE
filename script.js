@@ -89,6 +89,16 @@ function footer() {
             <div class="footer-brand">DISTRICT.<small>URBAN EMPIRE</small></div>
             <div><h3>TIENDA</h3><p>Inicio<br>Hombre<br>Promociones</p></div>
             <div><h3>SERVICIOS</h3><p>Probador virtual<br>Guia de tallas</p></div>
+            <div class="footer-contact">
+                <h3>CONTACTO</h3>
+                <p>DISTRICT URBAN EMPIRE</p>
+                <a href="mailto:contacto@districturbanempire.com">contacto@districturbanempire.com</a>
+                <div class="footer-social" aria-label="Redes sociales">
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-8h3l.5-3H14V8.2c0-.9.3-1.5 1.7-1.5H18V4.1c-.4-.1-1.3-.1-2.4-.1C13.2 4 12 5.5 12 7.8V10H9v3h3v8"/></svg></a>
+                    <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.2a3.8 3.8 0 1 1-3-3.7"/><path d="M14 4c.5 2.7 2.2 4.3 5 4.5"/></svg></a>
+                </div>
+            </div>
             <div class="copyright">© 2026 Urban Empire. Todos los derechos reservados.</div>
         </div>
     </footer>`; 

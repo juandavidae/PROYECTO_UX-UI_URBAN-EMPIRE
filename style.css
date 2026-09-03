@@ -14,6 +14,9 @@
 
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
   background: var(--paper);
   color: var(--ink);
   font-family: Montserrat, Arial, sans-serif;
@@ -90,37 +93,71 @@ button, select, input, textarea { font: inherit; }
 }
 .olive-button:hover { background: #86866b; transform: translateY(-2px); }
 
-/* PAGE BANNER */
+/* PAGE BANNER - CON IMAGEN LIMPIA DE PRENDA URBANA */
 .page-banner {
+  position: relative;
   width: 100%; 
-  height: 220px; 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center; 
+  height: 380px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   padding: 0 5%;
-  background-color: #050505; 
-  border-bottom: 1px solid #1a1a1a;
-  position: relative; 
+  background-color: #050505;
+  /* IMAGEN REAL LIMPIA DE CASACA OSACURA SIN TEXTO */
+  background-image: url('https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=1600&auto=format&fit=crop'); 
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-bottom: none;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
-.page-banner .banner-image {
+/* Sombreado elegante tipo viñeta */
+.page-banner::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: left center;
-  opacity: 1;
+  background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.85) 100%);
   z-index: 1;
 }
 
+.page-banner .banner-image {
+  display: none; /* Oculta cualquier etiqueta img interna si existía */
+}
+
+/* Estilos del texto del banner */
 .page-banner h1, 
 .page-banner .sub-portada, 
 .page-banner p {
   position: relative;
   z-index: 2;
+  color: #fff;
+  margin: 0;
+}
+
+.page-banner h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 6vw, 72px);
+  letter-spacing: 5px;
+  margin-bottom: 12px;
+  text-shadow: 2px 4px 15px rgba(0,0,0,0.9);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.page-banner .sub-portada {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 /* BENEFITS & SECTIONS */
@@ -159,8 +196,6 @@ button, select, input, textarea { font: inherit; }
 .product-card img { 
   display: block; width: 100%; aspect-ratio: 4/5; object-fit: cover; padding: 0; background: var(--card); 
 }
-
-/* Eliminamos la clase .product-card .heart de aquí para siempre */
 
 .product-card .card-copy { padding: 12px 10px; font: 14px Oswald, sans-serif; color: #444; background: #fff; }
 .product-card .card-copy strong { display: block; font-size: 15px; margin-bottom: 3px; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Montserrat', sans-serif; font-weight: 700; }
@@ -245,7 +280,7 @@ button, select, input, textarea { font: inherit; }
   gap: 20px; 
 }
 
-/* ESTRUCTURA DEL CATÁLOGO DE HOMBRES (Separación aumentada) */
+/* ESTRUCTURA DEL CATÁLOGO DE HOMBRES */
 .catalog-page { display: flex; gap: 70px; padding: 40px 4%; max-width: 1400px; margin: 0 auto; }
 .catalog-sidebar { width: 230px; flex-shrink: 0; border-right: 1px solid #dcdcdc; padding-right: 35px; }
 .catalog-sidebar h3 { font-family: 'Bebas Neue', Oswald, sans-serif; font-size: 26px; margin: 30px 0 15px; text-transform: uppercase; border-bottom: 2px solid #111; padding-bottom: 5px; letter-spacing: 1px; color: #111; }
@@ -264,7 +299,7 @@ button, select, input, textarea { font: inherit; }
 .view-icons { display: flex; gap: 10px; align-items: center; }
 .view-icons svg { width: 24px; height: 24px; fill: none; stroke: #555; stroke-width: 1.5; cursor: pointer; }
 
-/* BOTÓN DE ORDENAR ACTUALIZADO (NEGRO PREMIUM) */
+/* BOTÓN DE ORDENAR ACTUALIZADO */
 .sort-by { 
   appearance: none;
   -webkit-appearance: none;
@@ -327,7 +362,13 @@ button, select, input, textarea { font: inherit; }
 .footer-main h3 { font-family: Oswald, sans-serif; margin: 0 0 20px; font-size: 24px; letter-spacing: 1px; color: #fff; text-transform: uppercase; }
 .footer-main p, .footer-main li, .footer-main a { color: #a1a1aa; line-height: 1.6; margin: 0 0 10px 0; font-size: 16px; font-family: 'Montserrat', sans-serif; transition: color 0.2s; display: block; }
 .footer-main a:hover { color: #fff; }
+.footer-contact > p { color: #d1d1d1; font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+.footer-contact > a { overflow-wrap: anywhere; font-size: 13px; }
 .footer-social { display: flex; gap: 15px; align-items: center; margin-top: 20px; }
+.footer-social a { display: grid; place-items: center; width: 32px; height: 32px; margin: 0; color: var(--gold); }
+.footer-social svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.2s; }
+.footer-social a:hover svg { transform: translateY(-2px); }
+.footer-social a:hover { color: #fff; }
 .footer-social img { width: 36px !important; height: 36px !important; object-fit: contain; filter: brightness(0.9); transition: filter 0.3s, transform 0.2s; }
 .footer-social img:hover { filter: brightness(1.2); transform: translateY(-2px); }
 .footer-payments { display: block; height: 35px !important; width: auto !important; object-fit: contain; margin-top: 25px; filter: grayscale(100%) brightness(2); opacity: 0.8; }
@@ -341,10 +382,38 @@ button, select, input, textarea { font: inherit; }
   .site-header nav a { font-size: 12px; }
   .catalog-page { gap: 32px; }
   .catalog-content .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .category-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .category-card { grid-column: span 2; }
+  .category-card:nth-child(4) { grid-column: 2 / span 2; }
+  .category-card:nth-child(5) { grid-column: 4 / span 2; }
   .related-products-section .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .newsletter { gap: 24px; }
   .newsletter form { width: min(450px, 42vw); }
+}
+
+@media (max-width: 1024px) {
+  .site-header {
+    min-height: 76px;
+    height: auto;
+    flex-wrap: wrap;
+    padding: 12px 4%;
+    gap: 12px 18px;
+  }
+  .brand { margin-right: auto; }
+  .brand strong { font-size: clamp(30px, 4vw, 38px); }
+  .brand small { font-size: 11px; letter-spacing: 2px; margin-top: 5px; }
+  .site-header nav { display: none; order: 3; flex: 1 0 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0 4px; border-top: 1px solid #333; }
+  .site-header nav.is-open { display: flex; }
+  .site-header nav a { flex: 0 0 auto; padding: 11px 4px; font-size: 12px; letter-spacing: 1px; border-bottom: 1px solid #292929; }
+  .site-header nav .logout-button { width: 100%; padding: 11px 4px; text-align: left; font-size: 12px; letter-spacing: 1px; border-bottom: 1px solid #292929; }
+  .actions { gap: 8px; }
+  .actions button, .actions svg { width: 30px; height: 30px; }
+  .menu-toggle { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 38px; height: 38px; padding: 7px; border: 1px solid #555; border-radius: 4px; background: transparent; cursor: pointer; }
+  .menu-toggle span { display: block; width: 100%; height: 2px; background: #fff; transition: transform 0.2s ease, opacity 0.2s ease; }
+  .menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+  .menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .site-search { top: calc(100% + 8px); right: 4%; width: min(390px, 92vw); }
 }
 
 @media (max-width: 760px) {
@@ -376,7 +445,8 @@ button, select, input, textarea { font: inherit; }
   .hero h1 { font-size: clamp(58px, 17vw, 90px); letter-spacing: 0; }
   .olive-button { max-width: 100%; padding: 15px 22px; font-size: 12px; }
 
-  .page-banner { height: 150px; padding: 0 5%; }
+  .page-banner { height: 250px; padding: 0 5%; }
+  
   .benefits { height: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; }
   .benefits .service { min-height: 100px; height: auto; grid-template-columns: 48px 1fr; padding: 16px 12px; border-bottom: 1px solid #aaa; }
   .benefits .service:nth-child(2) { border-right: 0; }
@@ -388,7 +458,10 @@ button, select, input, textarea { font: inherit; }
   .section-title { gap: 12px; align-items: flex-end; }
   .section-title h2 { font-size: 18px; }
   .section-title a { font-size: 11px; white-space: nowrap; }
-  .category-grid, .catalog-content .product-grid, .related-products-section .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .category-grid, .catalog-content .product-grid, .related-products-section .product-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .category-card { grid-column: span 2; }
+  .category-card:nth-child(4) { grid-column: span 2; }
+  .category-card:nth-child(5) { grid-column: 2 / span 2; }
   .product-grid { gap: 12px; }
   .category-card b { font-size: 14px; padding: 11px 8px; }
   .product-card .card-copy { padding: 10px 8px; }
@@ -427,6 +500,9 @@ button, select, input, textarea { font: inherit; }
   .footer-main .footer-brand { font-size: 38px; grid-column: 1 / -1; }
   .footer-main h3 { font-size: 18px; margin-bottom: 12px; }
   .footer-main p { font-size: 12px; }
+  .footer-contact > p, .footer-contact > a, .footer-social a { font-size: 11px; }
+  .footer-contact { grid-column: 1 / -1; text-align: center; }
+  .footer-social { justify-content: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
   .copyright { font-size: 10px; margin-top: 8px; padding-top: 15px; }
 }
 

@@ -8,7 +8,81 @@
   
   <!-- MAGIA: Estilos exclusivos para la página de Servicios -->
   <style>
-    .services-wrapper { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+    /* Reset radical para evitar cualquier espacio blanco colado */
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        background-color: #f9f9f9;
+    }
+
+    /* --- CORRECCIONES DEFINITIVAS DEL BANNER --- */
+    .page-banner {
+        position: relative;
+        width: 100vw; /* Fuerza el ancho al 100% de la ventana */
+        height: 400px;
+        /* IMPORTANTE: AQUÍ DEBES PONER UNA FOTO QUE NO TENGA LETRAS */
+        background-image: url('img/banner-servicios.jpg'); 
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        /* Quité el margin-top y añadí padding-top para evitar que el margen empuje el banner hacia abajo y deje espacio blanco */
+        padding-top: 80px; 
+        box-sizing: border-box;
+    }
+
+    /* Sombreado oscuro (Overlay) para que el texto resalte */
+    .page-banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.75);
+        z-index: 1;
+    }
+
+    /* Estilos de los textos del banner */
+    .page-banner h1, .page-banner .sub-portada {
+        position: relative;
+        z-index: 2; /* Por encima del sombreado */
+        color: #fff;
+        margin: 0; /* Asegura que los textos no empujen el contenedor */
+    }
+
+    .page-banner h1 {
+        font-family: 'Bebas Neue', sans-serif; 
+        font-size: 72px; 
+        letter-spacing: 5px;
+        margin-bottom: 15px;
+        text-shadow: 2px 4px 15px rgba(0,0,0,0.8);
+        text-transform: uppercase;
+        line-height: 1;
+    }
+
+    .page-banner .sub-portada {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        letter-spacing: 3px;
+        color: var(--gold, #d4af37); 
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    /* -------------------------- */
+
+    /* Estilos del resto de la página */
+    .services-wrapper { 
+        padding: 60px 5%; /* Reduje un poco el padding superior aquí */
+        max-width: 1200px; 
+        margin: 0 auto; 
+    }
     .services-header { text-align: center; margin-bottom: 70px; }
     .services-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: 65px; color: #111; margin: 0; letter-spacing: 1px; }
     .services-header p { font-family: 'Montserrat', sans-serif; font-size: 16px; color: #555; max-width: 650px; margin: 15px auto 0; line-height: 1.7; }
@@ -16,13 +90,13 @@
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
     .service-item { background: #fff; padding: 50px 40px; border: 1px solid #eaeaea; border-radius: 8px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
     .service-item:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: #ccc; }
-    .service-icon { width: 80px; height: 80px; background: #050505; color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; }
+    .service-icon { width: 80px; height: 80px; background: #050505; color: var(--gold, #d4af37); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; }
     .service-icon svg { width: 38px; height: 38px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
     .service-item h3 { font-family: 'Oswald', sans-serif; font-size: 22px; color: #111; margin: 0 0 15px; text-transform: uppercase; letter-spacing: 1px; }
     .service-item p { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #666; line-height: 1.7; margin: 0; }
     
     .faq-section { margin-top: 100px; background: #080808; padding: 70px 6%; border-radius: 16px; color: #fff; }
-    .faq-section h2 { font-family: 'Oswald', sans-serif; font-size: 36px; color: var(--gold); text-align: center; margin: 0 0 50px 0; letter-spacing: 1px; text-transform: uppercase; }
+    .faq-section h2 { font-family: 'Oswald', sans-serif; font-size: 36px; color: var(--gold, #d4af37); text-align: center; margin: 0 0 50px 0; letter-spacing: 1px; text-transform: uppercase; }
     .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
     .faq-item h4 { font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 700; margin: 0 0 12px 0; color: #fff; }
     .faq-item p { font-family: 'Montserrat', sans-serif; font-size: 14px; color: #a1a1a1; line-height: 1.7; margin: 0; }
@@ -32,10 +106,10 @@
   <!-- El script inyectará el Header aquí -->
   <div id="site-header"></div>
 
-  <!-- Banner interno -->
+  <!-- BANNER INTERNO CORREGIDO -->
   <section class="page-banner">
-    <h1 style="display: none;">SERVICIOS</h1>
-    <p style="display: none;" class="sub-portada">INICIO - SERVICIOS</p>
+    <h1>SERVICIOS EXCLUSIVOS</h1>
+    <p class="sub-portada">INICIO / SERVICIOS</p>
   </section>
 
   <main class="services-wrapper">

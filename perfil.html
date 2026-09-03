@@ -4,7 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mi Perfil | District Urban Empire</title>
+  
+  <!-- CDN de FontAwesome para los iconos de los botones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  
   <style>
     /* Fondo general oscuro de pantalla completa */
     body {
@@ -108,15 +112,23 @@
         font-size: 16px;
         color: #fff;
     }
+    
+    /* --- ZONA DE BOTONES MEJORADA --- */
     .profile-actions {
         display: flex;
         gap: 15px;
+        flex-wrap: wrap; /* Evita que se aplasten en pantallas pequeñas */
     }
+    
     .btn-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px; /* Espacio entre el icono y el texto */
         font-family: 'Montserrat', sans-serif;
         font-size: 13px;
         font-weight: 700;
-        padding: 14px 30px;
+        padding: 14px 28px;
         border-radius: 8px;
         text-decoration: none;
         cursor: pointer;
@@ -124,6 +136,8 @@
         border: none;
         letter-spacing: 1px;
     }
+
+    /* Botón Catálogo */
     .btn-primary-custom {
         background: var(--gold, #d4af37);
         color: #000;
@@ -131,15 +145,32 @@
     .btn-primary-custom:hover {
         background: #fff;
         transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
     }
+    
+    /* Botón Mi Pedido Mejorado */
+    .btn-secondary-custom {
+        background: rgba(212, 175, 55, 0.05); /* Fondo sutil oscuro */
+        border: 1px solid var(--gold, #d4af37);
+        color: var(--gold, #d4af37);
+    }
+    .btn-secondary-custom:hover {
+        background: var(--gold, #d4af37);
+        color: #000;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); /* Brillo dorado */
+    }
+
+    /* Botón Cerrar Sesión Mejorado (UX) */
     .btn-outline-custom {
-        background: transparent;
+        background: rgba(255, 255, 255, 0.02);
         border: 1px solid #333;
-        color: #bbb;
+        color: #999;
     }
     .btn-outline-custom:hover {
-        border-color: #fff;
-        color: #fff;
+        background: rgba(239, 68, 68, 0.1); /* Fondo rojo muy sutil */
+        border-color: #ef4444; /* Borde rojo */
+        color: #ef4444; /* Texto rojo */
         transform: translateY(-2px);
     }
   </style>
@@ -178,8 +209,20 @@
             </div>
 
             <div class="profile-actions">
-                <a href="hombres.html" class="btn-action btn-primary-custom">VER CATÁLOGO</a>
-                <button type="button" class="btn-action btn-outline-custom logout-btn-profile">CERRAR SESIÓN</button>
+                <!-- Botón Catálogo -->
+                <a href="hombres.html" class="btn-action btn-primary-custom">
+                    <i class="fa-solid fa-store"></i> VER CATÁLOGO
+                </a>
+                
+                <!-- Botón Mi Pedido (Apunta a exito.html según tu imagen) -->
+                <a href="exito.html" class="btn-action btn-secondary-custom">
+                    <i class="fa-solid fa-box-open"></i> MI PEDIDO
+                </a>
+                
+                <!-- Botón Cerrar Sesión -->
+                <button type="button" class="btn-action btn-outline-custom logout-btn-profile">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> CERRAR SESIÓN
+                </button>
             </div>
         </div>
     </div>

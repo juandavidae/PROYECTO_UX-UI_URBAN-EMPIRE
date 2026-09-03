@@ -29,9 +29,6 @@
         letter-spacing: 1px;
     }
     
-    /* ==========================================
-       EL ARREGLO: DISEÑO HORIZONTAL DE LAS FILAS
-       ========================================== */
     .cart-items-list {
         display: flex;
         flex-direction: column;
@@ -46,7 +43,6 @@
         border-bottom: 1px solid #eaeaea;
     }
     
-    /* Imagen pequeña y controlada */
     .cart-row img {
         width: 120px;
         height: 140px;
@@ -55,9 +51,8 @@
         background-color: #f4f4f4;
     }
     
-    /* Detalles del producto al centro */
     .cart-row > div:nth-child(2) {
-        flex: 1; /* Ocupa todo el espacio restante empujando los botones a la derecha */
+        flex: 1;
         display: flex;
         flex-direction: column;
         gap: 6px;
@@ -83,7 +78,6 @@
         font-weight: 500;
     }
     
-    /* Botones de cantidad y eliminar a la derecha */
     .cart-controls {
         display: flex;
         align-items: center;
@@ -105,7 +99,6 @@
     }
     .cart-controls button:hover { background: #e0e0e0; }
     
-    /* Botón rojo de eliminar */
     .cart-controls button.remove {
         background: none;
         width: auto;
@@ -116,7 +109,6 @@
     }
     .cart-controls button.remove:hover { color: #991b1b; background: none; }
 
-    /* ESTADO VACÍO */
     .empty-cart-state {
         text-align: center;
         padding: 50px 0;
@@ -165,9 +157,11 @@
         margin-bottom: 25px;
     }
     
-    /* BOTÓN PROCEDER AL PAGO */
+    /* BOTÓN PROCEDER AL PAGO CONVERTIDO EN ENLACE SEGURO */
     #btn-checkout { 
+        display: block;
         width: 100%; 
+        box-sizing: border-box;
         padding: 18px; 
         background: #111; 
         color: #fff; 
@@ -180,6 +174,7 @@
         cursor: pointer; 
         transition: all 0.3s; 
         text-align: center; 
+        text-decoration: none;
     }
     #btn-checkout:hover { 
         background: #bbb78b; 
@@ -212,7 +207,7 @@
     <div class="cart-column-items">
       <h2>TU CARRITO</h2>
       <div id="cart-items" class="cart-items-list">
-         <!-- Renderizado dinámico desde script.js -->
+          <!-- Renderizado dinámico desde script.js -->
       </div>
     </div>
 
@@ -234,7 +229,7 @@
         <span id="cart-total">$0.00</span>
       </div>
 
-      <button id="btn-checkout">PROCEDER AL PAGO</button>
+      <a href="factura.html" id="btn-checkout">PROCEDER AL PAGO</a>
       
     </div>
   </main>
