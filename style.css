@@ -50,6 +50,7 @@ button, select, input, textarea { font: inherit; }
 .actions svg { width: 38px; height: 38px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
 .actions a { display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer; }
 .actions a svg { pointer-events: none; }
+.menu-toggle { display: none; }
 
 /* HERO */
 .hero {
@@ -342,8 +343,14 @@ button, select, input, textarea { font: inherit; }
   .brand { margin-right: auto; }
   .brand strong { font-size: 30px; }
   .brand small { font-size: 10px; letter-spacing: 2px; margin-top: 5px; }
-  .site-header nav { order: 3; flex: 1 0 100%; justify-content: space-between; gap: 8px; overflow-x: auto; padding: 3px 0; }
-  .site-header nav a { flex: 0 0 auto; font-size: 10px; letter-spacing: 1px; }
+  .menu-toggle { display: flex; flex-direction: column; justify-content: center; gap: 5px; width: 38px; height: 38px; padding: 7px; border: 1px solid #555; border-radius: 4px; background: transparent; cursor: pointer; }
+  .menu-toggle span { display: block; width: 100%; height: 2px; background: #fff; transition: transform 0.2s ease, opacity 0.2s ease; }
+  .menu-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .menu-toggle.is-open span:nth-child(2) { opacity: 0; }
+  .menu-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .site-header nav { display: none; order: 3; flex: 1 0 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 0 4px; border-top: 1px solid #333; }
+  .site-header nav.is-open { display: flex; }
+  .site-header nav a { flex: 0 0 auto; padding: 11px 4px; font-size: 12px; letter-spacing: 1px; border-bottom: 1px solid #292929; }
   .actions { gap: 8px; }
   .actions button, .actions svg { width: 30px; height: 30px; }
 

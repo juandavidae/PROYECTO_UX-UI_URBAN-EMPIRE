@@ -52,7 +52,7 @@ const PRODUCTS = [
 function header() { 
     return `<header class="site-header">
         <a class="brand" href="index.html"><strong>DISTRICT</strong><small>URBAN EMPIRE</small></a>
-        <nav>
+        <nav id="main-navigation">
             <a href="index.html">INICIO</a>
             <a href="hombres.html">HOMBRES</a>
             <a href="promociones.html">PROMOCIONES</a>
@@ -63,6 +63,7 @@ function header() {
             <a aria-label="Mi cuenta" href="login.html"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="15" r="7"/><path d="M10 41c0-8 5.7-13 14-13s14 5 14 13"/></svg></a>
             <a aria-label="Carrito" href="carrito.html"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 8h6l4 24h23l5-17H14"/><circle cx="19" cy="40" r="2.5"/><circle cx="35" cy="40" r="2.5"/></svg><span class="cart-count">${cart().reduce((a, p) => a + p.qty, 0)}</span></a>
         </div>
+        <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-navigation"><span></span><span></span><span></span></button>
     </header>`;
 }
 
@@ -156,6 +157,17 @@ function renderCheckoutInvoice() {
 document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('#site-header')) document.querySelector('#site-header').innerHTML = header();
     if (document.querySelector('#site-footer')) document.querySelector('#site-footer').innerHTML = footer();
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNavigation = document.querySelector('#main-navigation');
+    if (menuToggle && mainNavigation) {
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mainNavigation.classList.toggle('is-open');
+            menuToggle.classList.toggle('is-open', isOpen);
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+            menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menu' : 'Abrir menu');
+        });
+    }
     
     renderProducts();
     renderCart();
