@@ -74,14 +74,14 @@ button, select, input, textarea { font: inherit; }
 }
 .olive-button:hover { background: #86866b; transform: translateY(-2px); }
 
-/* PAGE BANNER - AJUSTE EXACTO A TU IMAGEN */
+/* PAGE BANNER CORREGIDO */
 .page-banner {
   width: 100%; 
-  height: 160px; /* Menos alto */
+  height: 220px; 
   display: flex; 
   flex-direction: column; 
   justify-content: center; 
-  padding: 0 4%;
+  padding: 0 5%;
   background-color: #050505; 
   border-bottom: 1px solid #1a1a1a;
   position: relative; 
@@ -91,41 +91,20 @@ button, select, input, textarea { font: inherit; }
 .page-banner .banner-image {
   position: absolute;
   top: 0;
-  right: 0;
-  left: auto;
-  width: 55%; /* La imagen solo cubre la mitad derecha */
+  left: 0;
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top;
-  opacity: 0.9;
+  object-position: left center; /* ESTA LÍNEA EVITA QUE SE COMA EL TEXTO */
+  opacity: 1; /* Imagen completa y nítida */
   z-index: 1;
-  /* Efecto difuminado para que se mezcle con el fondo negro hacia la izquierda */
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%);
-  mask-image: linear-gradient(to right, transparent 0%, black 50%);
 }
 
 .page-banner h1, 
 .page-banner .sub-portada, 
 .page-banner p {
   position: relative;
-  z-index: 2; /* Para que el texto siempre se vea por encima de la foto */
-}
-
-.page-banner h1 { 
-  font-family: 'Bebas Neue', sans-serif; 
-  font-size: 56px; 
-  color: #fff; 
-  margin: 0; 
-  line-height: 1; 
-  letter-spacing: 1px;
-}
-.page-banner .sub-portada { 
-  font-family: 'Montserrat', sans-serif; 
-  font-size: 11px; 
-  color: #fff; 
-  margin-top: 6px; 
-  letter-spacing: 1px; 
-  font-weight: 600; 
+  z-index: 2;
 }
 
 /* BENEFITS & SECTIONS */
@@ -232,6 +211,27 @@ button, select, input, textarea { font: inherit; }
   grid-template-columns: repeat(4, 1fr); 
   gap: 20px; 
 }
+
+/* ESTRUCTURA DEL CATÁLOGO DE HOMBRES */
+.catalog-page { display: flex; gap: 30px; padding: 40px 4%; max-width: 1400px; margin: 0 auto; }
+.catalog-sidebar { width: 220px; flex-shrink: 0; border-right: 1px solid #dcdcdc; padding-right: 25px; }
+.catalog-sidebar h3 { font-family: 'Bebas Neue', Oswald, sans-serif; font-size: 26px; margin: 30px 0 15px; text-transform: uppercase; border-bottom: 2px solid #111; padding-bottom: 5px; letter-spacing: 1px; color: #111; }
+.catalog-sidebar h3:first-child { margin-top: 0; }
+.catalog-sidebar ul { list-style: none; padding: 0; margin: 0; }
+.catalog-sidebar li { margin-bottom: 12px; font-size: 14px; color: #333; cursor: pointer; font-weight: 500; transition: color 0.2s; }
+.catalog-sidebar li:hover { color: #000; font-weight: 700; }
+.catalog-sidebar h4 { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 800; margin: 25px 0 15px; color: #000; text-transform: uppercase; }
+.catalog-sidebar label { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 13px; color: #333; cursor: pointer; font-weight: 500; }
+.catalog-sidebar label input { width: 16px; height: 16px; margin: 0; cursor: pointer; }
+.sidebar-colors { display: flex; flex-wrap: wrap; gap: 10px; }
+.sidebar-colors i { display: block; width: 22px; height: 22px; border-radius: 50%; cursor: pointer; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15); transition: transform 0.2s; }
+.sidebar-colors i:hover { transform: scale(1.1); }
+.catalog-content { flex: 1; }
+.catalog-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.view-icons { display: flex; gap: 10px; align-items: center; }
+.view-icons svg { width: 24px; height: 24px; fill: none; stroke: #555; stroke-width: 1.5; cursor: pointer; }
+.sort-by { padding: 8px 15px; border: 1px solid #ccc; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 13px; background: #fff; outline: none; width: 200px; }
+.catalog-content .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
 
 /* NEWSLETTER & FOOTER */
 .newsletter {

@@ -3,55 +3,62 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Camisetas Oversize | District</title>
+  <title>Camisetas Oversize | District Urban Empire</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="site-header"></div>
 
+  <!-- TEXTOS OCULTOS PARA EL JS -->
   <section class="page-banner">
-    <h1>CAMISETAS OVERSIZE</h1>
-    <p><a href="index.html">INICIO</a> - <a href="hombres.html">HOMBRE</a> - CAMISETAS OVERSIZE</p>
+    <h1 style="display: none;">CAMISETAS OVERSIZE</h1>
+    <p style="display: none;" class="sub-portada">INICIO - HOMBRE - CAMISETAS OVERSIZE</p>
   </section>
 
-  <main class="catalog-layout">
-    <aside class="filters">
-      <h2>CATEGORIAS</h2>
+  <main class="catalog-page">
+    <aside class="catalog-sidebar">
+      <h3>CATEGORIAS</h3>
       <ul>
         <li><a href="hombres.html">Accesorios</a></li>
         <li><a href="hombres.html">Calzado</a></li>
-        <li><a href="camisetas.html">Camisetas</a></li>
-        <li><a href="camisetas.html">Camisetas Oversize</a></li>
+        <li><a href="hombres.html">Camisetas</a></li>
+        <!-- Resaltamos la categoría activa -->
+        <li><a href="camisetas.html" style="font-weight: 700; color: #000;">Camisetas Oversize</a></li>
         <li><a href="hombres.html">Chaquetas</a></li>
         <li><a href="hombres.html">Gafas</a></li>
         <li><a href="hombres.html">Pantalones</a></li>
-        <li><a href="hombres.html">Hoddies</a></li>
+        <li><a href="hombres.html">Hoodies</a></li>
         <li><a href="hombres.html">Bermudas</a></li>
       </ul>
 
-      <h2>FILTRAR POR</h2>
-      <h3>TALLA</h3>
+      <h3>FILTRAR POR</h3>
+      <h4>TALLA</h4>
       <label><input type="checkbox"> S</label>
       <label><input type="checkbox"> M</label>
       <label><input type="checkbox"> L</label>
       <label><input type="checkbox"> XL</label>
       <label><input type="checkbox"> XXL</label>
 
-      <h3>COLOR</h3>
-      <div class="swatches">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      <h4>COLOR</h4>
+      <div class="sidebar-colors">
+        <i style="background: #4A3B32;"></i>
+        <i style="background: #6B2D31;"></i>
+        <i style="background: #000000;"></i>
+        <i style="background: #464B35;"></i>
+        <i style="background: #3B4B42;"></i>
+        <i style="background: #224488;"></i>
+        <i style="background: #D5B895;"></i>
+        <i style="background: #FF5500;"></i>
+        <i style="background: #660000;"></i>
       </div>
     </aside>
 
-    <section class="catalog">
-      <div class="catalog-toolbar">
-        <span class="view-icons">▦ ☷</span>
-        <select aria-label="Ordenar">
-          <option>Ordenar por</option>
-          <option>Precio menor</option>
-          <option>Precio mayor</option>
-        </select>
+    <section class="catalog-content">
+      <div class="catalog-header">
+        <div class="view-icons"></div>
+        <select class="sort-by"><option>Ordenar por: Destacados</option></select>
       </div>
+      <!-- Llamamos al filtro de camisetas -->
       <div class="product-grid" data-products="shirts"></div>
     </section>
   </main>

@@ -23,8 +23,8 @@ function renderViewIcons() {
 const PRODUCTS = [
     { 
         id: 'green-shirt', name: 'Camiseta Oversize Verde', price: 25, 
-        image: 'https://www.figma.com/api/mcp/asset/a70e1db1-6f28-4007-93dd-0f3ea78c0d34.png', 
-        images: ['https://www.figma.com/api/mcp/asset/a70e1db1-6f28-4007-93dd-0f3ea78c0d34.png', 'https://www.figma.com/api/mcp/asset/e42c0d7a-1e4d-447d-b828-ed0df0ee39a8.png', 'https://www.figma.com/api/mcp/asset/33ac37b8-2c54-462e-80c9-a2292ee8e294.png'],
+        image: 'assets/camiseta-verde.svg', 
+        images: ['assets/camiseta-verde.svg', 'https://www.figma.com/api/mcp/asset/e42c0d7a-1e4d-447d-b828-ed0df0ee39a8.png', 'https://www.figma.com/api/mcp/asset/33ac37b8-2c54-462e-80c9-a2292ee8e294.png'],
         desc: 'Camiseta relajada de algodón premium con fit oversize. Perfecta para un look urbano y cómodo.', 
         details: ['<strong>Color:</strong> Verde lavado', '<strong>Tela:</strong> 100% algodón premium', '<strong>Gramaje:</strong> 240 GSM', '<strong>Corte:</strong> Oversize', '<strong>Cuello:</strong> Redondo y acanalado', '<strong>Estampado:</strong> Serigrafía frontal y trasera', '<strong>Hecho en Ecuador</strong>'] 
     },
@@ -37,8 +37,8 @@ const PRODUCTS = [
     },
     { 
         id: 'brown-polo', name: 'Polo Oversize Marrón', price: 20, 
-        image: 'https://www.figma.com/api/mcp/asset/660ae037-f5ca-48d6-b09c-00b7c5489949.png', 
-        images: ['https://www.figma.com/api/mcp/asset/660ae037-f5ca-48d6-b09c-00b7c5489949.png', 'https://www.figma.com/api/mcp/asset/5f277386-f194-4230-8ed0-dde52b477b0f.png'],
+        image: 'assets/polo-marron.svg', 
+        images: ['assets/polo-marron.svg', 'https://www.figma.com/api/mcp/asset/5f277386-f194-4230-8ed0-dde52b477b0f.png'],
         desc: 'Polo de corte urbano moderno con detalles en contraste sutiles. Confeccionada en tejido grueso de alta calidad para un porte impecable.', 
         details: ['<strong>Color:</strong> Marrón tierra', '<strong>Tela:</strong> 100% algodón de alto gramaje', '<strong>Corte:</strong> Oversize contemporáneo', '<strong>Hecho en Ecuador</strong>'] 
     },
@@ -122,6 +122,10 @@ function renderProducts() {
         let list = PRODUCTS;
         if (container.dataset.products === 'men') list = [...PRODUCTS, ...PRODUCTS, ...PRODUCTS];
         if (container.dataset.products === 'new') list = PRODUCTS.filter(product => product.id !== 'green-shirt');
+        
+        // NUEVA REGLA: Filtra solo las camisetas para tu nueva página
+        if (container.dataset.products === 'shirts') list = PRODUCTS.filter(p => p.name.includes('Camiseta') || p.name.includes('Polo'));
+        
         if (container.dataset.products === 'recommendations') {
             const sampleItem = PRODUCTS.find(x => x.id === 'wide-leg') || PRODUCTS[0];
             list = Array(8).fill(sampleItem);
@@ -312,4 +316,4 @@ document.addEventListener('DOMContentLoaded', () => {
         const cartCount = document.querySelector('.cart-count');
         if (cartCount) cartCount.textContent = items.reduce((a, p) => a + p.qty, 0);
     });
-});
+}); 
