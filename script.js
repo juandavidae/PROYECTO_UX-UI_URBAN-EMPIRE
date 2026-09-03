@@ -110,6 +110,7 @@ function productCard(p) { return `<article class="product-card"><a href="product
 function renderProducts() {
     document.querySelectorAll('[data-products]').forEach(container => {
         let list = PRODUCTS;
+        if (container.dataset.products === 'men') list = [...PRODUCTS, ...PRODUCTS, ...PRODUCTS];
         if (container.dataset.products === 'new') list = PRODUCTS;
         container.innerHTML = list.map(productCard).join('')
     })
