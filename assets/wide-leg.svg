@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title">
+  <title id="title">Pantalón wide-leg denim</title>
+  <rect width="600" height="600" fill="#d9dbda"/>
+  <path d="M225 120h150l19 130-7 224-104-2-10-174-10 174-104 2-7-224z" fill="#34484d"/>
+  <path d="M225 120h150l9 63H216z" fill="#405a60"/>
+  <path d="M300 183v279M216 183h168M263 183l-8 105M337 183l8 105" fill="none" stroke="#9aa8a7" stroke-width="5"/>
+  <path d="M275 139h50" stroke="#c3ceca" stroke-width="6"/>
+</svg>

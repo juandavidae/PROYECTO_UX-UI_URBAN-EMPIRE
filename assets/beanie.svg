@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title">
+  <title id="title">Gorro cuff gris</title>
+  <rect width="600" height="600" fill="#d8d8d5"/>
+  <path d="M190 340c0-112 49-184 110-184s110 72 110 184z" fill="#767874"/>
+  <path d="M177 331h246v76H177z" fill="#555955"/>
+  <path d="M210 350v39M244 350v39M278 350v39M322 350v39M356 350v39M390 350v39" stroke="#a5a7a1" stroke-width="5"/>
+  <path d="M224 275c20-45 47-70 76-70s56 25 76 70" fill="none" stroke="#989b95" stroke-width="8"/>
+</svg>

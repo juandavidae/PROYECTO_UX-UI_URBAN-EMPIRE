@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title">
+  <title id="title">Polo oversize marrón</title>
+  <rect width="600" height="600" fill="#ddd9d1"/>
+  <path d="m215 170 70-35h30l70 35 62 90-57 38-27-47v196H237V251l-27 47-57-38z" fill="#805e4a"/>
+  <path d="m285 135 15 45 15-45 25 11-40 50-40-50z" fill="#e5ded4"/>
+  <path d="M300 196v251M237 251h126M267 196v122M333 196v122" fill="none" stroke="#4b352a" stroke-width="5"/>
+  <path d="M276 213h48" stroke="#efe8dc" stroke-width="6"/>
+  <circle cx="300" cy="233" r="4" fill="#efe8dc"/>
+</svg>
