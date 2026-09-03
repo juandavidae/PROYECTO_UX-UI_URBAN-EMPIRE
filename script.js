@@ -19,35 +19,35 @@ function renderViewIcons() {
 const PRODUCTS = [
     { 
         id: 'windbreaker', name: 'Nike Windbreaker', price: 50, 
-        image: 'assets/windbreaker.svg', 
+        image: 'https://www.figma.com/api/mcp/asset/ce45ed99-3b33-439f-8089-ed0f44a17b67.png', 
         images: ['https://www.figma.com/api/mcp/asset/ce45ed99-3b33-439f-8089-ed0f44a17b67.png', 'https://www.figma.com/api/mcp/asset/5f277386-f194-4230-8ed0-dde52b477b0f.png', 'https://www.figma.com/api/mcp/asset/3165740d-cf78-4275-8f8f-5df54e3ff880.png'],
         desc: 'Chaqueta ligera rompevientos diseñada para ofrecer máxima movilidad y protección superior contra los elementos climaticos urbanos.', 
         details: ['<strong>Material:</strong> 100% Poliéster impermeable', '<strong>Forro:</strong> Malla transpirable avanzada', '<strong>Ajuste:</strong> Regular fit urbano', '<strong>Cierre:</strong> Cremallera frontal completa reforzada'] 
     },
     { 
         id: 'brown-polo', name: 'Polo Oversize Marrón', price: 20, 
-        image: 'assets/brown-polo.svg', 
+        image: 'https://www.figma.com/api/mcp/asset/afdfc41f-e745-4c6a-949d-f74e0d37cdee.png', 
         images: ['https://www.figma.com/api/mcp/asset/afdfc41f-e745-4c6a-949d-f74e0d37cdee.png', 'https://www.figma.com/api/mcp/asset/5f277386-f194-4230-8ed0-dde52b477b0f.png'],
         desc: 'Polo de corte urbano moderno con detalles en contraste sutiles. Confeccionada en tejido grueso de alta calidad para un porte impecable.', 
         details: ['<strong>Color:</strong> Marrón tierra', '<strong>Tela:</strong> 100% algodón de alto gramaje', '<strong>Corte:</strong> Oversize contemporáneo', '<strong>Hecho en Ecuador</strong>'] 
     },
     { 
         id: 'shorts', name: 'Bermuda de Felpa', price: 20, 
-        image: 'assets/shorts.svg', 
+        image: 'https://www.figma.com/api/mcp/asset/6cdd8152-9934-43c7-84e9-33a0dc81fde5.png', 
         images: ['https://www.figma.com/api/mcp/asset/6cdd8152-9934-43c7-84e9-33a0dc81fde5.png', 'https://www.figma.com/api/mcp/asset/915b5340-de56-4ec2-8def-dff1b1e490ae.png'],
         desc: 'Bermuda ultra cómoda creada para el día a día en la ciudad. Estilo streetwear minimalista con acabados de primera calidad.', 
         details: ['<strong>Material:</strong> Felpa francesa (French Terry)', '<strong>Cintura:</strong> Elástica con cordón de ajuste reforzado', '<strong>Bolsillos:</strong> Laterales profundos', '<strong>Corte:</strong> Relajado'] 
     },
     { 
         id: 'wide-leg', name: 'Pantalón Wide-Leg', price: 35, 
-        image: 'assets/wide-leg.svg', 
+        image: 'https://www.figma.com/api/mcp/asset/33ac37b8-2c54-462e-80c9-a2292ee8e294.png', 
         images: ['https://www.figma.com/api/mcp/asset/33ac37b8-2c54-462e-80c9-a2292ee8e294.png', 'https://www.figma.com/api/mcp/asset/915b5340-de56-4ec2-8def-dff1b1e490ae.png'],
         desc: 'Pantalón ancho de mezclilla oscura con caída fluida y natural. Diseñado para destacar con tus zapatillas favoritas.', 
         details: ['<strong>Tela:</strong> Denim 12oz de alta resistencia', '<strong>Corte:</strong> Wide-leg (Bota ancha)', '<strong>Tiro:</strong> Medio-alto', '<strong>Lavado:</strong> Vintage oscuro'] 
     },
     { 
         id: 'beanie', name: 'Gorro cuff gris', price: 15, 
-        image: 'assets/beanie.svg', 
+        image: 'https://www.figma.com/api/mcp/asset/42315a75-5c14-4a16-8e7e-b0b3b762e919.png', 
         images: ['https://www.figma.com/api/mcp/asset/42315a75-5c14-4a16-8e7e-b0b3b762e919.png'],
         desc: 'Gorro tejido de invierno estilo cuff en color gris neutro.', 
         details: ['<strong>Material:</strong> Lana acrílica suave', '<strong>Talla:</strong> Única ajustable'] 

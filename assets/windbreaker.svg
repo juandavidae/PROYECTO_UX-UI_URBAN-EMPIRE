@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title">
-  <title id="title">Chaqueta rompevientos verde oliva</title>
-  <rect width="600" height="600" fill="#d9d9d2"/>
-  <path d="M188 190 260 145h80l72 45 64 92-61 42-31-45v183H216V279l-31 45-61-42z" fill="#59604a"/>
-  <path d="m260 145 40 53 40-53" fill="#687056" stroke="#20231c" stroke-width="5"/>
-  <path d="M300 198v269M216 278h168M247 198v118M353 198v118" fill="none" stroke="#25291f" stroke-width="5"/>
-  <path d="m185 282-30 42M415 282l30 42" stroke="#c2c4b7" stroke-width="8"/>
-  <rect x="262" y="360" width="76" height="55" rx="6" fill="#454a3a"/>
-</svg>
